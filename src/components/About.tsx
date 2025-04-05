@@ -15,10 +15,10 @@ const About = () => {
       <div className="cloud-container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-cloud-800">
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 text-cloud-800">
               Your Trusted Partner in Salesforce Excellence
             </h2>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="font-sans text-lg text-gray-600 mb-6">
               At Cloud Utility, we specialize in delivering high-impact Salesforce solutions that drive business growth and operational excellence. 
               Our team of certified Salesforce experts brings years of experience across industries to solve your most complex business challenges.
             </p>
@@ -29,7 +29,7 @@ const About = () => {
                   <Briefcase className="text-white" size={16} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-cloud-800 text-lg">Industry Expertise</h3>
+                  <h3 className="font-heading font-semibold text-cloud-800 text-lg">Industry Expertise</h3>
                   <p className="text-gray-600">
                     Deep domain knowledge across financial services, healthcare, retail, manufacturing, and more.
                   </p>
@@ -41,7 +41,7 @@ const About = () => {
                   <Award className="text-white" size={16} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-cloud-800 text-lg">Certified Experts</h3>
+                  <h3 className="font-heading font-semibold text-cloud-800 text-lg">Certified Experts</h3>
                   <p className="text-gray-600">
                     Team of certified Salesforce consultants, developers, and architects dedicated to your success.
                   </p>
@@ -53,7 +53,7 @@ const About = () => {
                   <TrendingUp className="text-white" size={16} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-cloud-800 text-lg">Proven Results</h3>
+                  <h3 className="font-heading font-semibold text-cloud-800 text-lg">Proven Results</h3>
                   <p className="text-gray-600">
                     Track record of delivering solutions that drive measurable business outcomes and ROI.
                   </p>
@@ -66,7 +66,7 @@ const About = () => {
             <div className="grid grid-cols-2 gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-cloud-600 mb-2">
+                  <div className="font-display text-4xl md:text-5xl font-bold text-cloud-600 mb-2">
                     {stat.number}
                   </div>
                   <div className="text-gray-600">{stat.label}</div>

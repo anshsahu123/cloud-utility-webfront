@@ -20,9 +20,9 @@ const TestimonialCard = ({
           <Star key={i} size={16} className="text-yellow-400 fill-yellow-400 mr-1" />
         ))}
       </div>
-      <p className="text-gray-600 mb-6 italic">"{quote}"</p>
+      <p className="text-gray-600 mb-6 italic font-display">"{quote}"</p>
       <div>
-        <p className="font-semibold text-cloud-800">{author}</p>
+        <p className="font-heading font-semibold text-cloud-800">{author}</p>
         <p className="text-sm text-gray-500">{position}, {company}</p>
       </div>
     </div>
@@ -61,8 +61,8 @@ const Testimonials = () => {
     <section id="testimonials" className="section-padding">
       <div className="cloud-container">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-cloud-800">What Our Clients Say</h2>
-          <p className="text-lg text-gray-600">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">What Our Clients Say</h2>
+          <p className="font-sans text-lg text-gray-600">
             Don't just take our word for it. Here's what our clients have to say about working with Cloud Utility.
           </p>
         </div>

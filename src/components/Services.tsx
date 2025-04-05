@@ -8,7 +8,7 @@ const ServiceCard = ({ icon: Icon, title, description }: { icon: any, title: str
       <div className="w-12 h-12 mb-6 cloud-gradient rounded-lg flex items-center justify-center">
         <Icon className="text-white" size={24} />
       </div>
-      <h3 className="text-xl font-bold mb-3 text-cloud-800">{title}</h3>
+      <h3 className="font-heading text-xl font-bold mb-3 text-cloud-800">{title}</h3>
       <p className="text-gray-600">{description}</p>
 
       <div className="mt-6 space-y-2">
@@ -46,8 +46,8 @@ const Services = () => {
     <section id="services" className="section-padding bg-cloud-50">
       <div className="cloud-container">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-cloud-800">Our Salesforce Services</h2>
-          <p className="text-lg text-gray-600">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">Our Salesforce Services</h2>
+          <p className="font-sans text-lg text-gray-600">
             Leverage the full potential of Salesforce with our comprehensive suite of services tailored to your business needs.
           </p>
         </div>

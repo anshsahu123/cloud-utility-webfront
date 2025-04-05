@@ -14,10 +14,10 @@ const Hero = () => {
 
       <div className="cloud-container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Elevate Your Business with Salesforce Solutions
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-cloud-50">
+          <p className="font-sans text-xl md:text-2xl mb-8 text-cloud-50">
             Custom Salesforce implementations tailored to your unique business challenges.
             Drive growth, boost efficiency, and transform customer experiences.
           </p>
