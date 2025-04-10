@@ -11,9 +11,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                <span className="font-bold text-lg text-cloud-800">CU</span>
-              </div>
+              <img 
+                src="/lovable-uploads/d005d7f8-4062-40ba-9d96-b62610ca0adc.png" 
+                alt="Cloud Utility Logo" 
+                className="h-10 w-auto bg-white rounded-full p-1"
+              />
               <span className="font-bold text-xl">Cloud Utility</span>
             </div>
             <p className="text-cloud-100 mb-4">

@@ -16,9 +16,11 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <a href="#" className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-full cloud-gradient flex items-center justify-center">
-                <span className="text-white font-bold text-lg">CU</span>
-              </div>
+              <img 
+                src="/lovable-uploads/d005d7f8-4062-40ba-9d96-b62610ca0adc.png" 
+                alt="Cloud Utility Logo" 
+                className="h-10 w-auto"
+              />
               <span className="font-bold text-xl text-cloud-800">Cloud Utility</span>
             </a>
           </div>
