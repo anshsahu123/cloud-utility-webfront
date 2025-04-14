@@ -1,8 +1,18 @@
 
 import React from 'react';
-import { CheckCircle, Database, Users, Zap } from 'lucide-react';
+import { CheckCircle, Zap, Users, Database, Link, Lightbulb, Clock } from 'lucide-react';
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => {
+const ServiceCard = ({ 
+  icon: Icon, 
+  title, 
+  description,
+  features = [] 
+}: { 
+  icon: any, 
+  title: string, 
+  description: string,
+  features?: string[]
+}) => {
   return (
     <div className="bg-white rounded-xl shadow-md p-6 card-hover">
       <div className="w-12 h-12 mb-6 cloud-gradient rounded-lg flex items-center justify-center">
@@ -12,10 +22,10 @@ const ServiceCard = ({ icon: Icon, title, description }: { icon: any, title: str
       <p className="text-gray-600">{description}</p>
 
       <div className="mt-6 space-y-2">
-        {Array(3).fill(0).map((_, i) => (
+        {features.map((feature, i) => (
           <div key={i} className="flex items-center">
             <CheckCircle size={16} className="text-cloud-500 mr-2 flex-shrink-0" />
-            <span className="text-sm text-gray-600">Feature {i + 1}</span>
+            <span className="text-sm text-gray-600">{feature}</span>
           </div>
         ))}
       </div>
@@ -28,17 +38,62 @@ const Services = () => {
     {
       icon: Zap,
       title: "Sales Cloud",
-      description: "Streamline your sales process, boost productivity, and close more deals with Sales Cloud solutions."
+      description: "Streamline your sales process, boost productivity, and close more deals with Sales Cloud solutions.",
+      features: [
+        "Lead & Opportunity Management", 
+        "Sales Forecasting", 
+        "Analytics & Reporting"
+      ]
     },
     {
       icon: Users,
       title: "Service Cloud",
-      description: "Deliver exceptional customer service with automated workflows and intelligent case management."
+      description: "Deliver exceptional customer service with automated workflows and intelligent case management.",
+      features: [
+        "Case Management", 
+        "Knowledge Base", 
+        "Omni-Channel Routing"
+      ]
     },
     {
       icon: Database,
       title: "Custom Solutions",
-      description: "Tailored Salesforce implementations to address your unique business challenges and goals."
+      description: "Tailored Salesforce implementations to address your unique business challenges and goals.",
+      features: [
+        "Apex Development", 
+        "Lightning Web Components", 
+        "Process Automation"
+      ]
+    },
+    {
+      icon: Link,
+      title: "Integrations",
+      description: "Connect Salesforce with your existing systems and third-party applications for seamless data flow.",
+      features: [
+        "API Development", 
+        "Middleware Solutions", 
+        "MuleSoft Integration"
+      ]
+    },
+    {
+      icon: Lightbulb,
+      title: "Consulting",
+      description: "Strategic guidance to maximize your Salesforce ROI and align technology with business objectives.",
+      features: [
+        "Strategy Development", 
+        "Business Process Optimization", 
+        "Change Management"
+      ]
+    },
+    {
+      icon: Clock,
+      title: "Ongoing Support",
+      description: "Comprehensive support to ensure your Salesforce implementation continues to deliver value.",
+      features: [
+        "24/7 Support", 
+        "Proactive Maintenance", 
+        "User Training"
+      ]
     }
   ];
 
@@ -59,6 +114,7 @@ const Services = () => {
               icon={service.icon} 
               title={service.title} 
               description={service.description} 
+              features={service.features}
             />
           ))}
         </div>
