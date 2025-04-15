@@ -5,6 +5,13 @@ import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
   return (
     <footer className="bg-cloud-800 text-white">
       <div className="cloud-container py-12">
@@ -40,20 +47,76 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Sales Cloud</a></li>
-              <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Service Cloud</a></li>
-              <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Custom Solutions</a></li>
-              <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Implementation</a></li>
-              <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Consultation</a></li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('sales-cloud')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Sales Cloud
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('service-cloud')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Service Cloud
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('custom-solutions')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Custom Solutions
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('services')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Implementation
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('services')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Consultation
+                </button>
+              </li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold text-lg mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><a href="#about" className="text-cloud-200 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#case-studies" className="text-cloud-200 hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#testimonials" className="text-cloud-200 hover:text-white transition-colors">Testimonials</a></li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('about')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  About Us
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('case-studies')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Case Studies
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('testimonials')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Testimonials
+                </button>
+              </li>
               <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Careers</a></li>
               <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Blog</a></li>
             </ul>
