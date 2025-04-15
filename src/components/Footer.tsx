@@ -73,18 +73,18 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToSection('services')} 
+                  onClick={() => scrollToSection('healthcare-case-study')} 
                   className="text-cloud-200 hover:text-white transition-colors"
                 >
-                  Implementation
+                  Healthcare
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToSection('services')} 
+                  onClick={() => scrollToSection('financial-services-case-study')} 
                   className="text-cloud-200 hover:text-white transition-colors"
                 >
-                  Consultation
+                  Financial Services
                 </button>
               </li>
             </ul>
@@ -111,14 +111,28 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToSection('testimonials')} 
+                  onClick={() => scrollToSection('enterprise-testimonials')} 
                   className="text-cloud-200 hover:text-white transition-colors"
                 >
-                  Testimonials
+                  Enterprise Testimonials
                 </button>
               </li>
-              <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-cloud-200 hover:text-white transition-colors">Blog</a></li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('mid-market-testimonials')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Mid-Market Testimonials
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('small-business-testimonials')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Small Business
+                </button>
+              </li>
             </ul>
           </div>
           
@@ -129,6 +143,14 @@ const Footer = () => {
               <li className="text-cloud-200">San Francisco, CA 94105</li>
               <li className="text-cloud-200">info@cloudutility.com</li>
               <li className="text-cloud-200">+1 (888) 555-1234</li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('contact')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Contact Us
+                </button>
+              </li>
             </ul>
           </div>
         </div>
