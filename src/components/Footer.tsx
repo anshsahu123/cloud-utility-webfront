@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, ShoppingCart, Briefcase, Code } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -69,6 +69,30 @@ const Footer = () => {
                   className="text-cloud-200 hover:text-white transition-colors"
                 >
                   Custom Solutions
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('commerce-cloud')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Commerce Cloud
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('salesforce-consulting')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Salesforce Consulting
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('salesforce-development')} 
+                  className="text-cloud-200 hover:text-white transition-colors"
+                >
+                  Salesforce Development
                 </button>
               </li>
               <li>

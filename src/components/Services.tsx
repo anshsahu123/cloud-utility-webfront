@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CheckCircle, Zap, Users, Database, Link, Lightbulb, Clock } from 'lucide-react';
+import { CheckCircle, Zap, Users, Database, Link, Lightbulb, Clock, ShoppingCart, Briefcase, Code } from 'lucide-react';
 
 const ServiceCard = ({ 
   icon: Icon, 
@@ -63,6 +63,36 @@ const Services = () => {
         "Apex Development", 
         "Lightning Web Components", 
         "Process Automation"
+      ]
+    },
+    {
+      icon: ShoppingCart,
+      title: "Commerce Cloud",
+      description: "Create seamless online shopping experiences with powerful e-commerce solutions built on Salesforce.",
+      features: [
+        "Personalized Shopping", 
+        "AI-Powered Recommendations", 
+        "Omnichannel Commerce"
+      ]
+    },
+    {
+      icon: Briefcase,
+      title: "Salesforce Consulting",
+      description: "Strategic guidance from certified experts to maximize your Salesforce ROI and drive growth.",
+      features: [
+        "Implementation Strategy", 
+        "Business Process Optimization", 
+        "Change Management"
+      ]
+    },
+    {
+      icon: Code,
+      title: "Salesforce Development",
+      description: "Custom development services to extend Salesforce functionality and integrate with your ecosystem.",
+      features: [
+        "Custom App Development", 
+        "API Integration", 
+        "Lightning Component Building"
       ]
     },
     {
