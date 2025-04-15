@@ -1,20 +1,22 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -34,65 +36,39 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {/* Services Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center text-cloud-800 hover:text-cloud-600 transition-colors">
-                Services <ChevronDown className="ml-1 h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="bg-white">
-                <DropdownMenuItem asChild>
-                  <Link to="/services/sales-cloud" className="cursor-pointer">Sales Cloud</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/services/service-cloud" className="cursor-pointer">Service Cloud</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/services/custom-solutions" className="cursor-pointer">Custom Solutions</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <button 
+              onClick={() => scrollToSection('services')}
+              className="text-cloud-800 hover:text-cloud-600 transition-colors"
+            >
+              Services
+            </button>
             
-            <Link to="/about" className="text-cloud-800 hover:text-cloud-600 transition-colors">About Us</Link>
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="text-cloud-800 hover:text-cloud-600 transition-colors"
+            >
+              About Us
+            </button>
             
-            {/* Case Studies Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center text-cloud-800 hover:text-cloud-600 transition-colors">
-                Case Studies <ChevronDown className="ml-1 h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="bg-white">
-                <DropdownMenuItem asChild>
-                  <Link to="/case-studies/manufacturing" className="cursor-pointer">Manufacturing</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/case-studies/healthcare" className="cursor-pointer">Healthcare</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/case-studies/financial-services" className="cursor-pointer">Financial Services</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <button 
+              onClick={() => scrollToSection('case-studies')} 
+              className="text-cloud-800 hover:text-cloud-600 transition-colors"
+            >
+              Case Studies
+            </button>
             
-            {/* Testimonials Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center text-cloud-800 hover:text-cloud-600 transition-colors">
-                Testimonials <ChevronDown className="ml-1 h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="bg-white">
-                <DropdownMenuItem asChild>
-                  <Link to="/testimonials/enterprise" className="cursor-pointer">Enterprise</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/testimonials/mid-market" className="cursor-pointer">Mid-Market</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/testimonials/small-business" className="cursor-pointer">Small Business</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <button 
+              onClick={() => scrollToSection('testimonials')} 
+              className="text-cloud-800 hover:text-cloud-600 transition-colors"
+            >
+              Testimonials
+            </button>
             
-            <Link to="/contact">
+            <button 
+              onClick={() => scrollToSection('contact')}
+            >
               <Button className="bg-cloud-600 hover:bg-cloud-700 text-white">Contact Us</Button>
-            </Link>
+            </button>
           </nav>
 
           {/* Mobile menu button */}
@@ -113,53 +89,41 @@ const Navbar = () => {
         {isMenuOpen && (
           <nav className="md:hidden bg-white py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <div className="px-4 py-2">
-                <div className="flex items-center justify-between text-cloud-800" onClick={() => {}}>
-                  <span>Services</span>
-                </div>
-                <div className="pl-4 mt-2 flex flex-col space-y-2">
-                  <Link to="/services/sales-cloud" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Sales Cloud</Link>
-                  <Link to="/services/service-cloud" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Service Cloud</Link>
-                  <Link to="/services/custom-solutions" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Custom Solutions</Link>
-                </div>
-              </div>
+              <button 
+                onClick={() => scrollToSection('services')}
+                className="text-cloud-800 hover:text-cloud-600 px-4 py-2 hover:bg-cloud-50 rounded-md transition-colors text-left"
+              >
+                Services
+              </button>
               
-              <Link 
-                to="/about" 
-                className="text-cloud-800 hover:text-cloud-600 px-4 py-2 hover:bg-cloud-50 rounded-md transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="text-cloud-800 hover:text-cloud-600 px-4 py-2 hover:bg-cloud-50 rounded-md transition-colors text-left"
               >
                 About Us
-              </Link>
+              </button>
               
-              <div className="px-4 py-2">
-                <div className="flex items-center justify-between text-cloud-800" onClick={() => {}}>
-                  <span>Case Studies</span>
-                </div>
-                <div className="pl-4 mt-2 flex flex-col space-y-2">
-                  <Link to="/case-studies/manufacturing" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Manufacturing</Link>
-                  <Link to="/case-studies/healthcare" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Healthcare</Link>
-                  <Link to="/case-studies/financial-services" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Financial Services</Link>
-                </div>
-              </div>
+              <button 
+                onClick={() => scrollToSection('case-studies')}
+                className="text-cloud-800 hover:text-cloud-600 px-4 py-2 hover:bg-cloud-50 rounded-md transition-colors text-left"
+              >
+                Case Studies
+              </button>
               
-              <div className="px-4 py-2">
-                <div className="flex items-center justify-between text-cloud-800" onClick={() => {}}>
-                  <span>Testimonials</span>
-                </div>
-                <div className="pl-4 mt-2 flex flex-col space-y-2">
-                  <Link to="/testimonials/enterprise" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Enterprise</Link>
-                  <Link to="/testimonials/mid-market" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Mid-Market</Link>
-                  <Link to="/testimonials/small-business" className="text-cloud-700 hover:text-cloud-600" onClick={() => setIsMenuOpen(false)}>Small Business</Link>
-                </div>
-              </div>
+              <button 
+                onClick={() => scrollToSection('testimonials')}
+                className="text-cloud-800 hover:text-cloud-600 px-4 py-2 hover:bg-cloud-50 rounded-md transition-colors text-left"
+              >
+                Testimonials
+              </button>
               
               <div className="px-4">
-                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full bg-cloud-600 hover:bg-cloud-700 text-white">
-                    Contact Us
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={() => scrollToSection('contact')}
+                  className="w-full bg-cloud-600 hover:bg-cloud-700 text-white"
+                >
+                  Contact Us
+                </Button>
               </div>
             </div>
           </nav>
