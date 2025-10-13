@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import AnnouncementBanner from '@/components/AnnouncementBanner';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
@@ -903,6 +904,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <AnnouncementBanner />
       <Navbar />
       <main className="flex-grow">
         <Hero />
