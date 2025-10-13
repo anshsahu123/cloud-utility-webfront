@@ -7,9 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ContactPage from "./pages/ContactPage";
 import ServicesPage from "./pages/ServicesPage";
-import AboutPage from "./pages/AboutPage";
-import TestimonialsPage from "./pages/TestimonialsPage";
-import CaseStudiesPage from "./pages/CaseStudiesPage";
 import InternshipPage from "./pages/InternshipPage";
 import NotFound from "./pages/NotFound";
 
@@ -23,14 +20,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceType" element={<ServicesPage />} />
-          <Route path="/case-studies" element={<CaseStudiesPage />} />
-          <Route path="/case-studies/:industryType" element={<CaseStudiesPage />} />
-          <Route path="/testimonials" element={<TestimonialsPage />} />
-          <Route path="/testimonials/:clientType" element={<TestimonialsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
           <Route path="/internship" element={<InternshipPage />} />
           
           {/* Catch-all Route */}

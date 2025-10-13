@@ -45,51 +45,105 @@ const Navbar = () => {
               </Button>
             </Link>
             
-            <Link to="/services" className="text-cloud-800 hover:text-cloud-600 transition-colors">
-              Services
-            </Link>
+            <div className="relative group">
+              <button 
+                onClick={() => scrollToSection('services')}
+                className="text-cloud-800 hover:text-cloud-600 transition-colors"
+              >
+                Services
+              </button>
+              <div className="hidden group-hover:flex absolute top-full left-0 z-50 flex-col bg-white shadow-lg rounded-md py-2 w-48 text-left">
+                <button 
+                  onClick={() => scrollToSection('sales-cloud')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
+                  Sales Cloud
+                </button>
+                <button 
+                  onClick={() => scrollToSection('service-cloud')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
+                  Service Cloud
+                </button>
+                <button 
+                  onClick={() => scrollToSection('custom-solutions')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
+                  Custom Solutions
+                </button>
+              </div>
+            </div>
             
-            <Link to="/about" className="text-cloud-800 hover:text-cloud-600 transition-colors">
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="text-cloud-800 hover:text-cloud-600 transition-colors"
+            >
               About Us
-            </Link>
+            </button>
             
             <div className="relative group">
-              <Link to="/case-studies" className="text-cloud-800 hover:text-cloud-600 transition-colors">
+              <button 
+                onClick={() => scrollToSection('case-studies')} 
+                className="text-cloud-800 hover:text-cloud-600 transition-colors"
+              >
                 Case Studies
-              </Link>
+              </button>
               <div className="hidden group-hover:flex absolute top-full left-0 z-50 flex-col bg-white shadow-lg rounded-md py-2 w-48 text-left">
-                <Link to="/case-studies/manufacturing" className="px-4 py-2 hover:bg-cloud-50 text-cloud-800">
+                <button 
+                  onClick={() => scrollToSection('manufacturing-case-study')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
                   Manufacturing
-                </Link>
-                <Link to="/case-studies/healthcare" className="px-4 py-2 hover:bg-cloud-50 text-cloud-800">
+                </button>
+                <button 
+                  onClick={() => scrollToSection('healthcare-case-study')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
                   Healthcare
-                </Link>
-                <Link to="/case-studies/financial-services" className="px-4 py-2 hover:bg-cloud-50 text-cloud-800">
+                </button>
+                <button 
+                  onClick={() => scrollToSection('financial-services-case-study')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
                   Financial Services
-                </Link>
+                </button>
               </div>
             </div>
             
             <div className="relative group">
-              <Link to="/testimonials" className="text-cloud-800 hover:text-cloud-600 transition-colors">
+              <button 
+                onClick={() => scrollToSection('testimonials')} 
+                className="text-cloud-800 hover:text-cloud-600 transition-colors"
+              >
                 Testimonials
-              </Link>
+              </button>
               <div className="hidden group-hover:flex absolute top-full left-0 z-50 flex-col bg-white shadow-lg rounded-md py-2 w-48 text-left">
-                <Link to="/testimonials/enterprise" className="px-4 py-2 hover:bg-cloud-50 text-cloud-800">
+                <button 
+                  onClick={() => scrollToSection('enterprise-testimonials')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
                   Enterprise
-                </Link>
-                <Link to="/testimonials/mid-market" className="px-4 py-2 hover:bg-cloud-50 text-cloud-800">
+                </button>
+                <button 
+                  onClick={() => scrollToSection('mid-market-testimonials')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
                   Mid-Market
-                </Link>
-                <Link to="/testimonials/small-business" className="px-4 py-2 hover:bg-cloud-50 text-cloud-800">
+                </button>
+                <button 
+                  onClick={() => scrollToSection('small-business-testimonials')}
+                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
+                >
                   Small Business
-                </Link>
+                </button>
               </div>
             </div>
             
-            <Link to="/contact">
+            <button 
+              onClick={() => scrollToSection('contact')}
+            >
               <Button className="bg-cloud-600 hover:bg-cloud-700 text-white">Contact Us</Button>
-            </Link>
+            </button>
           </nav>
 
           {/* Mobile menu button */}
@@ -111,7 +165,7 @@ const Navbar = () => {
           <nav className="md:hidden bg-white py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
               <div className="px-4">
-                <Link to="/internship" className="w-full block" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/internship" className="w-full block">
                   <Button 
                     className="w-full bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-500 hover:via-orange-500 hover:to-amber-600 text-white font-bold shadow-lg border-2 border-amber-300"
                   >
@@ -121,94 +175,107 @@ const Navbar = () => {
                 </Link>
               </div>
               
-              <Link 
-                to="/services"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-cloud-800 hover:text-cloud-600 px-4 py-2 hover:bg-cloud-50 rounded-md transition-colors text-left"
-              >
-                Services
-              </Link>
+              <div className="px-4">
+                <button 
+                  onClick={() => scrollToSection('services')}
+                  className="text-cloud-800 hover:text-cloud-600 w-full text-left font-medium mb-2"
+                >
+                  Services
+                </button>
+                <div className="pl-4 space-y-2 mb-2">
+                  <button 
+                    onClick={() => scrollToSection('sales-cloud')}
+                    className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
+                  >
+                    Sales Cloud
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('service-cloud')}
+                    className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
+                  >
+                    Service Cloud
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('custom-solutions')}
+                    className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
+                  >
+                    Custom Solutions
+                  </button>
+                </div>
+              </div>
               
-              <Link 
-                to="/about"
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={() => scrollToSection('about')}
                 className="text-cloud-800 hover:text-cloud-600 px-4 py-2 hover:bg-cloud-50 rounded-md transition-colors text-left"
               >
                 About Us
-              </Link>
+              </button>
               
               <div className="px-4">
-                <Link 
-                  to="/case-studies"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-cloud-800 hover:text-cloud-600 w-full text-left font-medium mb-2 block"
+                <button 
+                  onClick={() => scrollToSection('case-studies')}
+                  className="text-cloud-800 hover:text-cloud-600 w-full text-left font-medium mb-2"
                 >
                   Case Studies
-                </Link>
+                </button>
                 <div className="pl-4 space-y-2 mb-2">
-                  <Link 
-                    to="/case-studies/manufacturing"
-                    onClick={() => setIsMenuOpen(false)}
+                  <button 
+                    onClick={() => scrollToSection('manufacturing-case-study')}
                     className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
                   >
                     Manufacturing
-                  </Link>
-                  <Link 
-                    to="/case-studies/healthcare"
-                    onClick={() => setIsMenuOpen(false)}
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('healthcare-case-study')}
                     className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
                   >
                     Healthcare
-                  </Link>
-                  <Link 
-                    to="/case-studies/financial-services"
-                    onClick={() => setIsMenuOpen(false)}
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('financial-services-case-study')}
                     className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
                   >
                     Financial Services
-                  </Link>
+                  </button>
                 </div>
               </div>
               
               <div className="px-4">
-                <Link 
-                  to="/testimonials"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-cloud-800 hover:text-cloud-600 w-full text-left font-medium mb-2 block"
+                <button 
+                  onClick={() => scrollToSection('testimonials')}
+                  className="text-cloud-800 hover:text-cloud-600 w-full text-left font-medium mb-2"
                 >
                   Testimonials
-                </Link>
+                </button>
                 <div className="pl-4 space-y-2 mb-2">
-                  <Link 
-                    to="/testimonials/enterprise"
-                    onClick={() => setIsMenuOpen(false)}
+                  <button 
+                    onClick={() => scrollToSection('enterprise-testimonials')}
                     className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
                   >
                     Enterprise
-                  </Link>
-                  <Link 
-                    to="/testimonials/mid-market"
-                    onClick={() => setIsMenuOpen(false)}
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('mid-market-testimonials')}
                     className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
                   >
                     Mid-Market
-                  </Link>
-                  <Link 
-                    to="/testimonials/small-business"
-                    onClick={() => setIsMenuOpen(false)}
+                  </button>
+                  <button 
+                    onClick={() => scrollToSection('small-business-testimonials')}
                     className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
                   >
                     Small Business
-                  </Link>
+                  </button>
                 </div>
               </div>
               
               <div className="px-4">
-                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full bg-cloud-600 hover:bg-cloud-700 text-white">
-                    Contact Us
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={() => scrollToSection('contact')}
+                  className="w-full bg-cloud-600 hover:bg-cloud-700 text-white"
+                >
+                  Contact Us
+                </Button>
               </div>
             </div>
           </nav>
