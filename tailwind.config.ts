@@ -119,7 +119,8 @@ export default {
 				'fade-in': 'fade-in 0.5s ease-out forwards',
 				'fade-out': 'fade-out 0.5s ease-out forwards',
 				'float': 'float 6s ease-in-out infinite',
-				'marquee': 'marquee 20s linear infinite'
+				'marquee': 'marquee 20s linear infinite',
+				'bounce': 'bounce 1s infinite'
 			}
 		}
 	},

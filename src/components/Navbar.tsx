@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -36,6 +36,15 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <Link to="/internship">
+              <Button 
+                className="relative bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-500 hover:via-orange-500 hover:to-amber-600 text-white font-bold shadow-lg hover:shadow-xl transition-all animate-bounce hover:animate-none border-2 border-amber-300"
+              >
+                <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
+                Internship Program
+              </Button>
+            </Link>
+            
             <div className="relative group">
               <button 
                 onClick={() => scrollToSection('services')}
@@ -155,6 +164,17 @@ const Navbar = () => {
         {isMenuOpen && (
           <nav className="md:hidden bg-white py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
+              <div className="px-4">
+                <Link to="/internship" className="w-full block">
+                  <Button 
+                    className="w-full bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-500 hover:via-orange-500 hover:to-amber-600 text-white font-bold shadow-lg border-2 border-amber-300"
+                  >
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Internship Program
+                  </Button>
+                </Link>
+              </div>
+              
               <div className="px-4">
                 <button 
                   onClick={() => scrollToSection('services')}
