@@ -1,10 +1,11 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
-import { Sparkles, Users, TrendingUp, Award, Clock, Target, CheckCircle, ArrowRight } from 'lucide-react';
+import { Sparkles, Users, TrendingUp, Award, Clock, Target, CheckCircle, ArrowRight, BookOpen, Code, Settings, Zap } from 'lucide-react';
 import heroImage from '@/assets/internship-hero.jpg';
 import teamImage from '@/assets/internship-team.jpg';
 import presentationImage from '@/assets/internship-presentation.jpg';
@@ -216,6 +217,119 @@ const InternshipPage = () => {
                 className="rounded-2xl shadow-xl w-full h-auto"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Required Knowledge Section */}
+      <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
+        <div className="cloud-container">
+          <div className="text-center mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
+              <BookOpen className="w-4 h-4 text-accent" />
+              <span className="text-sm font-semibold text-accent">Prerequisites</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground">
+              Required <span className="text-primary">Knowledge Base</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Before applying for our internship or starting live Salesforce projects, every candidate must have a foundational understanding of Salesforce Admin and Development concepts. This ensures you can hit the ground running and make the most of your learning experience.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-6">
+            <Accordion type="single" collapsible className="space-y-4">
+              {/* Salesforce Admin Topics */}
+              <AccordionItem value="admin" className="border-2 rounded-2xl px-6 bg-card hover:border-primary/50 transition-all">
+                <AccordionTrigger className="text-left hover:no-underline py-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Settings className="w-7 h-7 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground">Salesforce Admin Topics</h3>
+                      <p className="text-sm text-muted-foreground mt-1">Essential administrative concepts and configurations</p>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-6">
+                  <div className="grid md:grid-cols-2 gap-3 mt-4">
+                    {[
+                      'Organization Setup & Company Information',
+                      'User Management & Profiles',
+                      'Permission Sets & Roles',
+                      'Objects, Fields, and Relationships',
+                      'Validation Rules & Formula Fields',
+                      'Page Layouts & Record Types',
+                      'Workflow Rules & Process Builder',
+                      'Flows & Automation Tools',
+                      'Reports & Dashboards',
+                      'Data Management (Import Wizard, Data Loader)',
+                      'Security Model (OWD, Role Hierarchy, Sharing Rules)',
+                      'App Builder Basics',
+                      'Sandbox & Deployment Basics'
+                    ].map((topic, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                        <Zap className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-foreground">{topic}</span>
+                      </div>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              {/* Salesforce Development Topics */}
+              <AccordionItem value="development" className="border-2 rounded-2xl px-6 bg-card hover:border-secondary/50 transition-all">
+                <AccordionTrigger className="text-left hover:no-underline py-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                      <Code className="w-7 h-7 text-secondary" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground">Salesforce Development Topics</h3>
+                      <p className="text-sm text-muted-foreground mt-1">Core development skills and technical knowledge</p>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-6">
+                  <div className="grid md:grid-cols-2 gap-3 mt-4">
+                    {[
+                      'Apex Programming Basics',
+                      'Triggers & Handler Classes',
+                      'SOQL & SOSL',
+                      'Governor Limits & Best Practices',
+                      'Batch Apex & Future Methods',
+                      'REST & SOAP APIs Integration',
+                      'Test Classes & Code Coverage',
+                      'Lightning Web Components (LWC)',
+                      'Aura Components Overview',
+                      'Visualforce Pages (Basics)',
+                      'Custom Metadata & Custom Settings',
+                      'Deployment using Change Sets',
+                      'Salesforce CLI & VS Code Setup',
+                      'Error Handling & Debugging Techniques'
+                    ].map((topic, index) => (
+                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                        <Zap className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-foreground">{topic}</span>
+                      </div>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+
+            <Card className="mt-8 border-2 border-accent/20 bg-accent/5">
+              <CardContent className="p-8 text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto">
+                  <Award className="w-8 h-8 text-accent" />
+                </div>
+                <h4 className="text-xl font-bold text-foreground">Ready to Learn?</h4>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  Don't worry if you're not familiar with all these topics yet! Our comprehensive training program covers everything you need to know. We'll guide you through each concept step by step.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
