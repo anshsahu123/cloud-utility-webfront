@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -36,15 +36,6 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/internship">
-              <Button 
-                className="relative bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-500 hover:via-orange-500 hover:to-amber-600 text-white font-bold shadow-lg hover:shadow-xl transition-all animate-bounce hover:animate-none border-2 border-amber-300"
-              >
-                <Sparkles className="w-4 h-4 mr-2 animate-pulse" />
-                Internship Program
-              </Button>
-            </Link>
-            
             <div className="relative group">
               <button 
                 onClick={() => scrollToSection('services')}
@@ -109,37 +100,17 @@ const Navbar = () => {
                 </button>
               </div>
             </div>
-            
-            <div className="relative group">
-              <button 
-                onClick={() => scrollToSection('testimonials')} 
-                className="text-cloud-800 hover:text-cloud-600 transition-colors"
+
+            <Link to="/internship">
+              <Button 
+                variant="outline"
+                className="text-cloud-800 hover:text-cloud-600 border-cloud-300"
               >
-                Testimonials
-              </button>
-              <div className="hidden group-hover:flex absolute top-full left-0 z-50 flex-col bg-white shadow-lg rounded-md py-2 w-48 text-left">
-                <button 
-                  onClick={() => scrollToSection('enterprise-testimonials')}
-                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
-                >
-                  Enterprise
-                </button>
-                <button 
-                  onClick={() => scrollToSection('mid-market-testimonials')}
-                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
-                >
-                  Mid-Market
-                </button>
-                <button 
-                  onClick={() => scrollToSection('small-business-testimonials')}
-                  className="px-4 py-2 hover:bg-cloud-50 text-cloud-800"
-                >
-                  Small Business
-                </button>
-              </div>
-            </div>
+                Internship
+              </Button>
+            </Link>
             
-            <button 
+            <button
               onClick={() => scrollToSection('contact')}
             >
               <Button className="bg-cloud-600 hover:bg-cloud-700 text-white">Contact Us</Button>
@@ -164,17 +135,6 @@ const Navbar = () => {
         {isMenuOpen && (
           <nav className="md:hidden bg-white py-4 animate-fade-in">
             <div className="flex flex-col space-y-4">
-              <div className="px-4">
-                <Link to="/internship" className="w-full block">
-                  <Button 
-                    className="w-full bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-500 hover:via-orange-500 hover:to-amber-600 text-white font-bold shadow-lg border-2 border-amber-300"
-                  >
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Internship Program
-                  </Button>
-                </Link>
-              </div>
-              
               <div className="px-4">
                 <button 
                   onClick={() => scrollToSection('services')}
@@ -239,34 +199,16 @@ const Navbar = () => {
                   </button>
                 </div>
               </div>
-              
+
               <div className="px-4">
-                <button 
-                  onClick={() => scrollToSection('testimonials')}
-                  className="text-cloud-800 hover:text-cloud-600 w-full text-left font-medium mb-2"
-                >
-                  Testimonials
-                </button>
-                <div className="pl-4 space-y-2 mb-2">
-                  <button 
-                    onClick={() => scrollToSection('enterprise-testimonials')}
-                    className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
+                <Link to="/internship" className="w-full block" onClick={() => setIsMenuOpen(false)}>
+                  <Button 
+                    variant="outline"
+                    className="w-full text-cloud-800 hover:text-cloud-600 border-cloud-300"
                   >
-                    Enterprise
-                  </button>
-                  <button 
-                    onClick={() => scrollToSection('mid-market-testimonials')}
-                    className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
-                  >
-                    Mid-Market
-                  </button>
-                  <button 
-                    onClick={() => scrollToSection('small-business-testimonials')}
-                    className="text-cloud-700 hover:text-cloud-600 block w-full text-left text-sm"
-                  >
-                    Small Business
-                  </button>
-                </div>
+                    Internship
+                  </Button>
+                </Link>
               </div>
               
               <div className="px-4">
