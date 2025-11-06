@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ArrowRight, Shield, Users, Zap, AlertCircle, CheckCircle2, TrendingUp } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import signalLampImg from '@/assets/case-study-signallamp.jpg';
 import octopusImg from '@/assets/case-study-octopus.jpg';
 import launchpadImg from '@/assets/case-study-launchpad.jpg';
@@ -135,74 +136,86 @@ const CaseStudiesPage = () => {
               </div>
             </div>
             
-            {/* Challenges, Solutions, Impact */}
-            <div className="space-y-8">
+            {/* Accordion for Challenges, Solutions, Impact */}
+            <Accordion type="single" collapsible className="space-y-4">
               {/* Challenges */}
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-red-100 rounded-lg">
-                    <AlertCircle className="w-5 h-5 text-red-600" />
+              <AccordionItem value="challenges" className="border border-border rounded-xl overflow-hidden bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-red-100 rounded-lg">
+                      <AlertCircle className="w-5 h-5 text-red-600" />
+                    </div>
+                    <h4 className="font-heading text-xl font-bold text-foreground">
+                      Challenges
+                    </h4>
                   </div>
-                  <h4 className="font-heading text-xl font-bold text-foreground">
-                    Challenges
-                  </h4>
-                </div>
-                <ul className="space-y-3">
-                  {caseStudy.challenges.map((challenge: string, i: number) => (
-                    <li key={i} className="flex items-start gap-3 group">
-                      <span className="h-6 w-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 flex-shrink-0 mt-0.5 group-hover:bg-red-100 transition-colors">
-                        <span className="text-xs font-bold">!</span>
-                      </span>
-                      <span className="text-muted-foreground leading-relaxed">{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
+                  <ul className="space-y-3 pt-2">
+                    {caseStudy.challenges.map((challenge: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 group">
+                        <span className="h-6 w-6 rounded-full bg-red-50 flex items-center justify-center text-red-600 flex-shrink-0 mt-0.5 group-hover:bg-red-100 transition-colors">
+                          <span className="text-xs font-bold">!</span>
+                        </span>
+                        <span className="text-muted-foreground leading-relaxed">{challenge}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
               
               {/* Solutions */}
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <CheckCircle2 className="w-5 h-5 text-green-600" />
+              <AccordionItem value="solutions" className="border border-border rounded-xl overflow-hidden bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-green-100 rounded-lg">
+                      <CheckCircle2 className="w-5 h-5 text-green-600" />
+                    </div>
+                    <h4 className="font-heading text-xl font-bold text-foreground">
+                      Solutions
+                    </h4>
                   </div>
-                  <h4 className="font-heading text-xl font-bold text-foreground">
-                    Solutions
-                  </h4>
-                </div>
-                <ul className="space-y-3">
-                  {caseStudy.solutions.map((solution: string, i: number) => (
-                    <li key={i} className="flex items-start gap-3 group">
-                      <span className="h-6 w-6 rounded-full bg-green-50 flex items-center justify-center text-green-600 flex-shrink-0 mt-0.5 group-hover:bg-green-100 transition-colors">
-                        <CheckCircle2 className="w-4 h-4" />
-                      </span>
-                      <span className="text-muted-foreground leading-relaxed">{solution}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
+                  <ul className="space-y-3 pt-2">
+                    {caseStudy.solutions.map((solution: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 group">
+                        <span className="h-6 w-6 rounded-full bg-green-50 flex items-center justify-center text-green-600 flex-shrink-0 mt-0.5 group-hover:bg-green-100 transition-colors">
+                          <CheckCircle2 className="w-4 h-4" />
+                        </span>
+                        <span className="text-muted-foreground leading-relaxed">{solution}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
 
               {/* Impact */}
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <TrendingUp className="w-5 h-5 text-blue-600" />
+              <AccordionItem value="impact" className="border border-border rounded-xl overflow-hidden bg-card">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <TrendingUp className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <h4 className="font-heading text-xl font-bold text-foreground">
+                      Impact & Results
+                    </h4>
                   </div>
-                  <h4 className="font-heading text-xl font-bold text-foreground">
-                    Impact & Results
-                  </h4>
-                </div>
-                <ul className="space-y-3">
-                  {caseStudy.impact.map((item: string, i: number) => (
-                    <li key={i} className="flex items-start gap-3 group">
-                      <span className="h-6 w-6 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0 mt-0.5 group-hover:bg-blue-100 transition-colors">
-                        <span className="text-xs font-bold">★</span>
-                      </span>
-                      <span className="text-muted-foreground leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-4">
+                  <ul className="space-y-3 pt-2">
+                    {caseStudy.impact.map((item: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 group">
+                        <span className="h-6 w-6 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0 mt-0.5 group-hover:bg-blue-100 transition-colors">
+                          <span className="text-xs font-bold">★</span>
+                        </span>
+                        <span className="text-muted-foreground leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </article>
