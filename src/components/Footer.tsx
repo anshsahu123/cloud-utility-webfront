@@ -127,10 +127,10 @@ const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToSection('case-studies')} 
+                  onClick={() => scrollToSection('live-projects')} 
                   className="text-cloud-200 hover:text-white transition-colors"
                 >
-                  Case Studies
+                  Live Projects
                 </button>
               </li>
               <li>

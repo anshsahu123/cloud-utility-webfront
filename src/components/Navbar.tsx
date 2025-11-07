@@ -74,10 +74,10 @@ const Navbar = () => {
             
             <div className="relative group">
               <button 
-                onClick={() => scrollToSection('case-studies')} 
+                onClick={() => scrollToSection('live-projects')} 
                 className="text-cloud-800 hover:text-cloud-600 transition-colors"
               >
-                Case Studies
+                Live Projects
               </button>
               <div className="hidden group-hover:flex absolute top-full left-0 z-50 flex-col bg-white shadow-lg rounded-md py-2 w-48 text-left">
                 <button 
@@ -173,10 +173,10 @@ const Navbar = () => {
               
               <div className="px-4">
                 <button 
-                  onClick={() => scrollToSection('case-studies')}
+                  onClick={() => scrollToSection('live-projects')}
                   className="text-cloud-800 hover:text-cloud-600 w-full text-left font-medium mb-2"
                 >
-                  Case Studies
+                  Live Projects
                 </button>
                 <div className="pl-4 space-y-2 mb-2">
                   <button 

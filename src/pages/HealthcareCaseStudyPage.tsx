@@ -113,7 +113,7 @@ const HealthcareCaseStudyPage = () => {
           <div className="cloud-container">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="font-display text-4xl md:text-5xl font-bold mb-6 text-white">
-                Healthcare Case Studies
+                Healthcare Live Projects
               </h1>
               <p className="font-sans text-xl text-cloud-50">
                 See how we've helped healthcare organizations enhance patient care 
@@ -151,17 +151,17 @@ const HealthcareCaseStudyPage = () => {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div>
                 <h3 className="font-heading text-2xl font-bold mb-2 text-cloud-800">
-                  Explore More Case Studies
+                  Explore More Live Projects
                 </h3>
                 <p className="text-gray-600">
                   See how we've helped businesses across various industries
                 </p>
               </div>
               <div className="flex space-x-4 mt-6 md:mt-0">
-                <Link to="/case-studies/manufacturing" className="inline-flex items-center text-cloud-600 hover:text-cloud-700 font-medium">
+                <Link to="/live-projects/manufacturing" className="inline-flex items-center text-cloud-600 hover:text-cloud-700 font-medium">
                   Manufacturing <ArrowRight size={16} className="ml-2" />
                 </Link>
-                <Link to="/case-studies/financial-services" className="inline-flex items-center text-cloud-600 hover:text-cloud-700 font-medium">
+                <Link to="/live-projects/financial-services" className="inline-flex items-center text-cloud-600 hover:text-cloud-700 font-medium">
                   Financial Services <ArrowRight size={16} className="ml-2" />
                 </Link>
               </div>

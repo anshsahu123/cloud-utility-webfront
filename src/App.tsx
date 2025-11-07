@@ -25,7 +25,7 @@ const App = () => (
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceType" element={<ServicesPage />} />
           <Route path="/internship" element={<InternshipPage />} />
-          <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/live-projects" element={<CaseStudiesPage />} />
           
           {/* Catch-all Route */}
           <Route path="*" element={<NotFound />} />

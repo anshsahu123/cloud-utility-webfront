@@ -956,10 +956,10 @@ const Index = () => {
           <About />
         </div>
         
-        <div id="case-studies" className="section-padding bg-gray-50">
+        <div id="live-projects" className="section-padding bg-gray-50">
           <div className="cloud-container">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">Case Studies</h2>
+              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">Live Projects</h2>
               <p className="font-sans text-lg text-gray-600">
                 Discover how our Salesforce solutions have helped businesses across industries achieve remarkable results.
               </p>
