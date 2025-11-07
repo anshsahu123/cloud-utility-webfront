@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Link } from 'react-router-dom';
-import { Sparkles, Users, TrendingUp, Award, Clock, Target, CheckCircle, ArrowRight, BookOpen, Code, Settings, Zap } from 'lucide-react';
+import { Building2, Users, Briefcase, CheckCircle, ArrowRight, Smartphone, Heart, Home, GraduationCap, DollarSign, Car, Upload } from 'lucide-react';
 import heroImage from '@/assets/internship-hero.jpg';
 import teamImage from '@/assets/internship-team.jpg';
-import presentationImage from '@/assets/internship-presentation.jpg';
-import mentorshipImage from '@/assets/internship-mentorship.jpg';
-import testimonial1 from '@/assets/testimonial-1.jpg';
-import testimonial2 from '@/assets/testimonial-2.jpg';
+import { useToast } from '@/hooks/use-toast';
 
 const InternshipPage = () => {
+  const { toast } = useToast();
+  const [selectedIndustry, setSelectedIndustry] = useState<string>('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    domain: '',
+    resume: null as File | null
+  });
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const industries = [
+    { id: 'automobile', name: 'Automobile', icon: Car, color: 'primary' },
+    { id: 'telecom', name: 'Telecom', icon: Smartphone, color: 'secondary' },
+    { id: 'healthcare', name: 'Healthcare', icon: Heart, color: 'accent' },
+    { id: 'real-estate', name: 'Real Estate', icon: Home, color: 'primary' },
+    { id: 'finance', name: 'Finance', icon: DollarSign, color: 'secondary' },
+    { id: 'education', name: 'Education', icon: GraduationCap, color: 'accent' }
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Application Submitted!",
+      description: "We'll review your application and get back to you within 2 weeks.",
+    });
   };
 
   return (
@@ -33,19 +58,19 @@ const InternshipPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-                <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-                <span className="text-sm font-semibold text-primary">Launch Your Career</span>
+                <Building2 className="w-4 h-4 text-primary" />
+                <span className="text-sm font-semibold text-primary">Limited-Time Opportunity</span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-                Kickstart Your Career with Our{' '}
+                Join Our Live Project{' '}
                 <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                   Internship Program
                 </span>
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                Learn, grow, and contribute to real projects while building your skills. Join a dynamic team where innovation meets mentorship and your ideas make an impact.
+                We're opening short-term internship opportunities for passionate learners to work hands-on with our expert Salesforce and web development teams on real projects.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
@@ -60,9 +85,9 @@ const InternshipPage = () => {
                   size="lg" 
                   variant="outline"
                   className="text-lg px-8 py-6 border-2"
-                  onClick={() => scrollToSection('details')}
+                  onClick={() => scrollToSection('industries')}
                 >
-                  Learn More
+                  Explore Industries
                 </Button>
               </div>
             </div>
@@ -71,7 +96,7 @@ const InternshipPage = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-2xl"></div>
               <img 
                 src={heroImage} 
-                alt="Diverse team of interns collaborating" 
+                alt="Professional team working on live projects" 
                 className="relative rounded-2xl shadow-2xl w-full h-auto"
               />
             </div>
@@ -79,107 +104,93 @@ const InternshipPage = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Company Context Section */}
       <section className="py-16 bg-muted/30">
-        <div className="cloud-container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { label: 'Active Interns', value: '150+', icon: Users },
-              { label: 'Success Rate', value: '95%', icon: TrendingUp },
-              { label: 'Projects Completed', value: '200+', icon: Target },
-              { label: 'Industry Awards', value: '12+', icon: Award }
-            ].map((stat, index) => (
-              <div key={index} className="text-center space-y-2 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                <stat.icon className="w-8 h-8 mx-auto text-primary mb-2" />
-                <div className="text-3xl md:text-4xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+        <div className="cloud-container text-center space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+            Our company is currently open for a <span className="text-primary">limited-time internship program</span> where selected candidates can work with our team on real industry projects and gain practical experience.
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            We're not a training institute — we're a genuine organization focused on client work and live Salesforce and web projects. Think of this as a real corporate internship, just like big MNCs offer.
+          </p>
         </div>
       </section>
 
-      {/* Program Details Section */}
-      <section id="details" className="py-20 md:py-32">
+      {/* Choose Your Industry Section */}
+      <section id="industries" className="py-20 md:py-32 bg-gradient-to-br from-background to-muted/30">
         <div className="cloud-container">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              What Makes Our Program <span className="text-primary">Unique?</span>
+              Choose Your <span className="text-primary">Industry Domain</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We've designed a comprehensive program that combines hands-on experience, expert mentorship, and real-world projects.
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Select an industry where you want hands-on experience. You'll work on live projects in your chosen domain, solving real business challenges with real datasets.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-lg">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground">Program Duration</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Our internship program runs for 3-6 months, giving you ample time to learn, grow, and make meaningful contributions. We offer flexible start dates throughout the year with both full-time and part-time options available to accommodate your schedule.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-lg">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
-                  <Target className="w-6 h-6 text-secondary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground">Learning Outcomes</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Gain hands-on experience with cutting-edge technologies and industry best practices. Work on real client projects, develop professional skills, and build a portfolio that showcases your capabilities. Receive certifications upon successful completion.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-lg">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-accent" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground">Expert Mentorship</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Each intern is paired with a dedicated mentor who provides guidance, feedback, and support throughout the program. Benefit from weekly one-on-one sessions, code reviews, and career development advice from industry professionals with years of experience.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-lg">
-              <CardContent className="p-8 space-y-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold text-foreground">Benefits & Perks</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Competitive stipend, flexible work environment, access to premium learning resources, networking opportunities, company events, and potential for full-time employment. We invest in your growth with training programs, conference attendance, and more.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {industries.map((industry) => (
+              <Card
+                key={industry.id}
+                className={`cursor-pointer transition-all hover:shadow-lg border-2 ${
+                  selectedIndustry === industry.id 
+                    ? 'border-primary bg-primary/5' 
+                    : 'border-border hover:border-primary/50'
+                }`}
+                onClick={() => setSelectedIndustry(industry.id)}
+              >
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className={`w-16 h-16 rounded-full bg-${industry.color}/10 flex items-center justify-center mx-auto`}>
+                    <industry.icon className={`w-8 h-8 text-${industry.color}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground">{industry.name}</h3>
+                  {selectedIndustry === industry.id && (
+                    <p className="text-sm text-muted-foreground animate-fade-in">
+                      You'll get exposure to live projects in the {industry.name.toLowerCase()} industry, working with real datasets and solving real business challenges.
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mt-20">
+          {selectedIndustry && (
+            <div className="mt-12 text-center animate-fade-in">
+              <Button 
+                size="lg"
+                onClick={() => scrollToSection('apply')}
+                className="px-8 py-6"
+              >
+                Apply for {industries.find(i => i.id === selectedIndustry)?.name} Internship
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* What You'll Work On Section */}
+      <section className="py-20 md:py-32">
+        <div className="cloud-container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
               <img 
                 src={teamImage} 
-                alt="Interns brainstorming in modern office" 
+                alt="Team collaborating on live projects" 
                 className="rounded-2xl shadow-xl w-full h-auto"
               />
             </div>
             <div className="space-y-6 order-1 lg:order-2">
-              <h3 className="text-3xl font-bold text-foreground">Work on Real Projects</h3>
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground">Work on Real Live Projects</h3>
               <p className="text-lg text-muted-foreground">
-                From day one, you'll be contributing to actual projects that impact our clients and users. No busy work—just meaningful tasks that challenge you and help you grow as a professional.
+                From day one, you'll be contributing to actual client projects that impact real businesses. This isn't simulated work — it's genuine industry experience working alongside our expert team.
               </p>
               <ul className="space-y-3">
                 {[
-                  'Collaborate with cross-functional teams',
-                  'Use industry-standard tools and technologies',
-                  'Present your work to stakeholders',
-                  'Build features that go into production'
+                  'Collaborate directly with our Salesforce and web development teams',
+                  'Work on active client projects with real deadlines',
+                  'Gain hands-on experience with Salesforce Health Cloud, CMS integrations, and more',
+                  'Build your portfolio with genuine project experience'
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
@@ -189,269 +200,158 @@ const InternshipPage = () => {
               </ul>
             </div>
           </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center mt-20">
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold text-foreground">Personalized Mentorship</h3>
-              <p className="text-lg text-muted-foreground">
-                Our mentorship program pairs you with experienced professionals who are invested in your success. They'll guide your learning journey, provide career advice, and help you navigate challenges.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  'Weekly 1-on-1 mentoring sessions',
-                  'Personalized learning plans',
-                  'Code reviews and technical guidance',
-                  'Career development coaching'
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <img 
-                src={mentorshipImage} 
-                alt="Mentor guiding intern" 
-                className="rounded-2xl shadow-xl w-full h-auto"
-              />
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Required Knowledge Section */}
+      {/* Prerequisites Section */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-secondary/5 to-background">
         <div className="cloud-container">
           <div className="text-center mb-16 space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
-              <BookOpen className="w-4 h-4 text-accent" />
-              <span className="text-sm font-semibold text-accent">Prerequisites</span>
-            </div>
             <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              Required <span className="text-primary">Knowledge Base</span>
+              Prerequisites <span className="text-primary">for Application</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Before applying for our internship or starting live Salesforce projects, every candidate must have a foundational understanding of Salesforce Admin and Development concepts. This ensures you can hit the ground running and make the most of your learning experience.
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Before applying, make sure you have these foundational skills. These are the basics we expect candidates to bring to the table.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
-            <Accordion type="single" collapsible className="space-y-4">
-              {/* Salesforce Admin Topics */}
-              <AccordionItem value="admin" className="border-2 rounded-2xl px-6 bg-card hover:border-primary/50 transition-all">
-                <AccordionTrigger className="text-left hover:no-underline py-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Settings className="w-7 h-7 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground">Salesforce Admin Topics</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Essential administrative concepts and configurations</p>
-                    </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                title: 'Programming Fundamentals',
+                description: 'Basic understanding of programming concepts, logic, and problem-solving approaches.'
+              },
+              {
+                title: 'Web Development Basics',
+                description: 'Fundamental knowledge of HTML, CSS, and JavaScript for building web interfaces.'
+              },
+              {
+                title: 'Salesforce Curiosity',
+                description: 'Eagerness to learn Salesforce Admin and Development basics — we\'ll teach you the rest!'
+              }
+            ].map((prereq, index) => (
+              <Card key={index} className="border-2 hover:border-primary/50 transition-all">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                    <CheckCircle className="w-6 h-6 text-primary" />
                   </div>
-                </AccordionTrigger>
-                <AccordionContent className="pt-2 pb-6">
-                  <div className="grid md:grid-cols-2 gap-3 mt-4">
-                    {[
-                      'Organization Setup & Company Information',
-                      'User Management & Profiles',
-                      'Permission Sets & Roles',
-                      'Objects, Fields, and Relationships',
-                      'Validation Rules & Formula Fields',
-                      'Page Layouts & Record Types',
-                      'Workflow Rules & Process Builder',
-                      'Flows & Automation Tools',
-                      'Reports & Dashboards',
-                      'Data Management (Import Wizard, Data Loader)',
-                      'Security Model (OWD, Role Hierarchy, Sharing Rules)',
-                      'App Builder Basics',
-                      'Sandbox & Deployment Basics'
-                    ].map((topic, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
-                        <Zap className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-foreground">{topic}</span>
-                      </div>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              {/* Salesforce Development Topics */}
-              <AccordionItem value="development" className="border-2 rounded-2xl px-6 bg-card hover:border-secondary/50 transition-all">
-                <AccordionTrigger className="text-left hover:no-underline py-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                      <Code className="w-7 h-7 text-secondary" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground">Salesforce Development Topics</h3>
-                      <p className="text-sm text-muted-foreground mt-1">Core development skills and technical knowledge</p>
-                    </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="pt-2 pb-6">
-                  <div className="grid md:grid-cols-2 gap-3 mt-4">
-                    {[
-                      'Apex Programming Basics',
-                      'Triggers & Handler Classes',
-                      'SOQL & SOSL',
-                      'Governor Limits & Best Practices',
-                      'Batch Apex & Future Methods',
-                      'REST & SOAP APIs Integration',
-                      'Test Classes & Code Coverage',
-                      'Lightning Web Components (LWC)',
-                      'Aura Components Overview',
-                      'Visualforce Pages (Basics)',
-                      'Custom Metadata & Custom Settings',
-                      'Deployment using Change Sets',
-                      'Salesforce CLI & VS Code Setup',
-                      'Error Handling & Debugging Techniques'
-                    ].map((topic, index) => (
-                      <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
-                        <Zap className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-foreground">{topic}</span>
-                      </div>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-
-            <Card className="mt-8 border-2 border-accent/20 bg-accent/5">
-              <CardContent className="p-8 text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto">
-                  <Award className="w-8 h-8 text-accent" />
-                </div>
-                <h4 className="text-xl font-bold text-foreground">Ready to Learn?</h4>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Don't worry if you're not familiar with all these topics yet! Our comprehensive training program covers everything you need to know. We'll guide you through each concept step by step.
-                </p>
-              </CardContent>
-            </Card>
+                  <h3 className="text-xl font-bold text-foreground">{prereq.title}</h3>
+                  <p className="text-sm text-muted-foreground">{prereq.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="cloud-container">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground">
-              Hear from Our <span className="text-primary">Past Interns</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Real stories from interns who've transformed their careers through our program.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="border-2 hover:shadow-xl transition-all">
-              <CardContent className="p-8 space-y-6">
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={testimonial1} 
-                    alt="Sarah Chen" 
-                    className="w-20 h-20 rounded-full object-cover border-4 border-primary/20"
-                  />
-                  <div>
-                    <h4 className="text-xl font-bold text-foreground">Sarah Chen</h4>
-                    <p className="text-muted-foreground">Software Engineering Intern</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground leading-relaxed italic">
-                  "This internship completely transformed my career trajectory. I learned more in 3 months here than I did in my entire final year at university. The mentorship was exceptional, and I got to work on real features that thousands of users interact with daily. I'm now a full-time developer on the team!"
-                </p>
-                <div className="flex gap-1">
-                  {[1,2,3,4,5].map((star) => (
-                    <Award key={star} className="w-5 h-5 text-primary fill-primary" />
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:shadow-xl transition-all">
-              <CardContent className="p-8 space-y-6">
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={testimonial2} 
-                    alt="Marcus Rodriguez" 
-                    className="w-20 h-20 rounded-full object-cover border-4 border-secondary/20"
-                  />
-                  <div>
-                    <h4 className="text-xl font-bold text-foreground">Marcus Rodriguez</h4>
-                    <p className="text-muted-foreground">Product Design Intern</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground leading-relaxed italic">
-                  "The collaborative environment and real-world projects made this internship incredibly valuable. My mentor pushed me to think critically and solve complex problems. I gained hands-on experience with industry tools and built a portfolio that helped me land my dream job. Highly recommend!"
-                </p>
-                <div className="flex gap-1">
-                  {[1,2,3,4,5].map((star) => (
-                    <Award key={star} className="w-5 h-5 text-secondary fill-secondary" />
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="mt-12 text-center">
-            <img 
-              src={presentationImage} 
-              alt="Intern presenting project" 
-              className="rounded-2xl shadow-2xl max-w-4xl mx-auto w-full h-auto"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action Section */}
+      {/* Application Form Section */}
       <section id="apply" className="py-20 md:py-32 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
-        <div className="cloud-container text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-            <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-            <span className="text-sm font-semibold text-primary">Join Our Team</span>
-          </div>
-          
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto">
-            Ready to Launch Your Career?
-          </h2>
-          
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Don't miss this opportunity to learn from the best, work on exciting projects, and kickstart your professional journey. Applications are now open!
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link to="/contact">
-              <Button size="lg" className="text-lg px-10 py-6 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all">
-                Apply Now <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </Link>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="text-lg px-10 py-6 border-2"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              Back to Top
-            </Button>
+        <div className="cloud-container">
+          <div className="text-center mb-12 space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
+              <Briefcase className="w-4 h-4 text-primary" />
+              <span className="text-sm font-semibold text-primary">Apply Now</span>
+            </div>
+            
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground max-w-3xl mx-auto">
+              Apply for Our Internship Program
+            </h2>
+            
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Selected interns will get a chance to work directly with our team on active projects and gain real-world experience.
+            </p>
           </div>
 
-          <div className="pt-8 grid md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
-            <div className="space-y-2">
-              <h4 className="font-bold text-foreground">Rolling Applications</h4>
-              <p className="text-sm text-muted-foreground">We accept applications year-round with quarterly start dates</p>
-            </div>
-            <div className="space-y-2">
-              <h4 className="font-bold text-foreground">Quick Response</h4>
-              <p className="text-sm text-muted-foreground">Hear back within 2 weeks of submitting your application</p>
-            </div>
-            <div className="space-y-2">
-              <h4 className="font-bold text-foreground">Inclusive Hiring</h4>
-              <p className="text-sm text-muted-foreground">We welcome applicants from all backgrounds and experiences</p>
-            </div>
-          </div>
+          <Card className="max-w-3xl mx-auto border-2">
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Full Name *</Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+1 (555) 000-0000"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="domain">Preferred Industry Domain *</Label>
+                  <select
+                    id="domain"
+                    required
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    value={formData.domain}
+                    onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
+                  >
+                    <option value="">Select an industry</option>
+                    {industries.map((industry) => (
+                      <option key={industry.id} value={industry.id}>
+                        {industry.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="resume">Resume / CV *</Label>
+                  <div className="flex items-center gap-4">
+                    <Input
+                      id="resume"
+                      type="file"
+                      accept=".pdf,.doc,.docx"
+                      required
+                      onChange={(e) => setFormData({ ...formData, resume: e.target.files?.[0] || null })}
+                      className="cursor-pointer"
+                    />
+                    <Upload className="w-5 h-5 text-muted-foreground" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Accepted formats: PDF, DOC, DOCX (Max 5MB)
+                  </p>
+                </div>
+
+                <div className="pt-4">
+                  <Button type="submit" size="lg" className="w-full text-lg py-6">
+                    Submit Application
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </div>
+              </form>
+
+              <div className="mt-8 p-4 bg-muted/50 rounded-lg">
+                <p className="text-sm text-muted-foreground text-center">
+                  <strong>Note:</strong> Selected interns will get a chance to work directly with our team on active projects and gain real-world experience. We'll review your application carefully and respond within 2 weeks.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
