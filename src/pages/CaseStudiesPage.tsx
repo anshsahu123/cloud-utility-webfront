@@ -1,49 +1,19 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ArrowRight, Shield, Users, Zap, AlertCircle, CheckCircle2, TrendingUp, ImageIcon } from 'lucide-react';
+import { ArrowRight, Shield, Users, Zap, AlertCircle, CheckCircle2, TrendingUp } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
 import signalLampImg from '@/assets/case-study-signallamp.jpg';
 import octopusImg from '@/assets/case-study-octopus.jpg';
 import launchpadImg from '@/assets/case-study-launchpad.jpg';
-import signalLampDashboard from '@/assets/signallamp-dashboard.jpg';
-import signalLampCollaboration from '@/assets/signallamp-collaboration.jpg';
-import signalLampWorkflow from '@/assets/signallamp-workflow.jpg';
-import octopusCMS from '@/assets/octopus-cms.jpg';
-import octopusPerformance from '@/assets/octopus-performance.jpg';
-import octopusWebsite from '@/assets/octopus-website.jpg';
-import launchpadPortal from '@/assets/launchpad-portal.jpg';
-import launchpadSecurity from '@/assets/launchpad-security.jpg';
-import launchpadArchitecture from '@/assets/launchpad-architecture.jpg';
 
 const CaseStudiesPage = () => {
-  const carouselImages = {
-    signalLamp: [
-      { src: signalLampDashboard, caption: "Patient Data Dashboard" },
-      { src: signalLampCollaboration, caption: "Care Team Collaboration" },
-      { src: signalLampWorkflow, caption: "Workflow Management System" }
-    ],
-    octopus: [
-      { src: octopusCMS, caption: "CMS Interface" },
-      { src: octopusPerformance, caption: "Performance Analytics" },
-      { src: octopusWebsite, caption: "Development Workspace" }
-    ],
-    launchpad: [
-      { src: launchpadPortal, caption: "Secure Government Portal" },
-      { src: launchpadSecurity, caption: "Data Security Dashboard" },
-      { src: launchpadArchitecture, caption: "System Architecture" }
-    ]
-  };
-
   const caseStudies = [
     {
       title: "SignalLamp Health Cloud",
       subtitle: "Healthcare Data Management",
       image: signalLampImg,
       icon: Users,
-      carouselKey: 'signalLamp' as const,
       description: "Implemented Salesforce Health Cloud for SignalLamp to revolutionize patient data tracking, streamline clinical workflows, and enhance healthcare team collaboration across multiple facilities.",
       result: "68% reduction in patient data retrieval time and 45% improvement in care coordination efficiency",
       challenges: [
@@ -70,7 +40,6 @@ const CaseStudiesPage = () => {
       subtitle: "Website Development & CMS Integration",
       image: octopusImg,
       icon: Zap,
-      carouselKey: 'octopus' as const,
       description: "Built a dynamic, high-performance website for Octopus Platform with integrated CMS capabilities, enabling easy content management and delivering an exceptional user experience.",
       result: "80% faster content updates and 50% improvement in page load performance",
       challenges: [
@@ -97,7 +66,6 @@ const CaseStudiesPage = () => {
       subtitle: "Secure Government Salesforce Solutions",
       image: launchpadImg,
       icon: Shield,
-      carouselKey: 'launchpad' as const,
       description: "Delivered a comprehensive Salesforce solution for the U.S. Government's Launchpad project, focusing on scalability, data security, and compliance with federal regulations.",
       result: "100% compliance achieved with FedRAMP standards and 99.99% system uptime",
       challenges: [
@@ -124,10 +92,6 @@ const CaseStudiesPage = () => {
   const CaseStudyDetail = ({ caseStudy, index }: { caseStudy: any; index: number }) => {
     const Icon = caseStudy.icon;
     const isEven = index % 2 === 0;
-    const images = carouselImages[caseStudy.carouselKey];
-    const autoplayPlugin = React.useRef(
-      Autoplay({ delay: 3000, stopOnInteraction: true })
-    );
     
     return (
       <article className="bg-card rounded-2xl border border-border overflow-hidden mb-16 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
@@ -252,44 +216,6 @@ const CaseStudiesPage = () => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
-
-            {/* Visual Highlights Carousel */}
-            <div className="mt-10">
-              <div className="flex items-center gap-2 mb-4">
-                <ImageIcon className="w-5 h-5 text-cloud-600" />
-                <h4 className="font-heading text-xl font-bold text-foreground">
-                  Visual Highlights
-                </h4>
-              </div>
-              <Carousel
-                plugins={[autoplayPlugin.current]}
-                className="w-full"
-                onMouseEnter={() => autoplayPlugin.current.stop()}
-                onMouseLeave={() => autoplayPlugin.current.play()}
-              >
-                <CarouselContent>
-                  {images.map((image, i) => (
-                    <CarouselItem key={i}>
-                      <div className="relative rounded-xl overflow-hidden shadow-lg group">
-                        <img
-                          src={image.src}
-                          alt={image.caption}
-                          className="w-full h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-cloud-900/80 via-cloud-900/20 to-transparent"></div>
-                        <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <p className="text-white font-semibold text-lg drop-shadow-lg">
-                            {image.caption}
-                          </p>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-4 bg-background/90 backdrop-blur-sm hover:bg-background" />
-                <CarouselNext className="right-4 bg-background/90 backdrop-blur-sm hover:bg-background" />
-              </Carousel>
-            </div>
           </div>
         </div>
       </article>
@@ -313,19 +239,6 @@ const CaseStudiesPage = () => {
               <p className="font-sans text-xl md:text-2xl text-muted-foreground leading-relaxed">
                 Explore how we've helped organizations transform their operations with innovative 
                 Salesforce solutions and cutting-edge technology.
-              </p>
-            </div>
-
-            {/* Visual Highlights Section Intro */}
-            <div className="text-center max-w-3xl mx-auto mb-16 pb-8 border-b border-border">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <ImageIcon className="w-8 h-8 text-cloud-600" />
-                <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
-                  Visual Highlights from Our Projects
-                </h2>
-              </div>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                Explore snapshots from our real-world Salesforce implementations and digital solutions
               </p>
             </div>
             
