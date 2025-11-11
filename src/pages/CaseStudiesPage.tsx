@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ArrowRight, Shield, Users, Zap, AlertCircle, CheckCircle2, TrendingUp, ImageIcon } from 'lucide-react';
+import { ArrowRight, Shield, Users, Zap, AlertCircle, CheckCircle2, TrendingUp, ImageIcon, Building2, UserCircle, Landmark, ShieldCheck, Phone, Car, GraduationCap } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
@@ -333,6 +333,119 @@ const CaseStudiesPage = () => {
               {caseStudies.map((caseStudy, index) => (
                 <CaseStudyDetail key={index} caseStudy={caseStudy} index={index} />
               ))}
+            </div>
+
+            {/* Additional Industry Domains Section */}
+            <div className="mt-32 pt-16 border-t border-border">
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  Industry Expertise Across Domains
+                </h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  We deliver tailored Salesforce and digital solutions across multiple industries, 
+                  helping businesses streamline operations and drive growth.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {/* Real Estate */}
+                <article className="bg-card rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-cloud-100 rounded-xl">
+                      <Building2 className="w-8 h-8 text-cloud-600" />
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">Real Estate</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Transform property management with Salesforce CRM solutions that streamline lead tracking, 
+                    automate listings, and enhance client relationships for real estate firms and brokers.
+                  </p>
+                </article>
+
+                {/* HRMS */}
+                <article className="bg-card rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-cloud-100 rounded-xl">
+                      <UserCircle className="w-8 h-8 text-cloud-600" />
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">HRMS</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Modernize human resource management with Salesforce-powered solutions for recruitment, 
+                    onboarding, performance tracking, and employee engagement across organizations.
+                  </p>
+                </article>
+
+                {/* Banking */}
+                <article className="bg-card rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-cloud-100 rounded-xl">
+                      <Landmark className="w-8 h-8 text-cloud-600" />
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">Banking</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Enable digital transformation in banking with Salesforce Financial Services Cloud, 
+                    delivering personalized customer experiences and secure transaction management.
+                  </p>
+                </article>
+
+                {/* Insurance */}
+                <article className="bg-card rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-cloud-100 rounded-xl">
+                      <ShieldCheck className="w-8 h-8 text-cloud-600" />
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">Insurance</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Streamline policy management, claims processing, and customer service with Salesforce 
+                    solutions designed specifically for insurance providers and brokers.
+                  </p>
+                </article>
+
+                {/* Telecom */}
+                <article className="bg-card rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-cloud-100 rounded-xl">
+                      <Phone className="w-8 h-8 text-cloud-600" />
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">Telecom</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Enhance customer experience and operational efficiency in telecommunications with 
+                    Salesforce solutions for subscription management, billing, and service delivery.
+                  </p>
+                </article>
+
+                {/* Automobile */}
+                <article className="bg-card rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-cloud-100 rounded-xl">
+                      <Car className="w-8 h-8 text-cloud-600" />
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">Automobile</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Drive automotive sales and service excellence with Salesforce solutions for dealer 
+                    management, customer engagement, and connected vehicle experiences.
+                  </p>
+                </article>
+
+                {/* Education */}
+                <article className="bg-card rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-cloud-100 rounded-xl">
+                      <GraduationCap className="w-8 h-8 text-cloud-600" />
+                    </div>
+                    <h3 className="font-heading text-2xl font-bold text-foreground">Education</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Transform educational institutions with Salesforce Education Cloud for student recruitment, 
+                    enrollment management, and lifelong learner engagement.
+                  </p>
+                </article>
+              </div>
             </div>
 
             {/* CTA Section */}
