@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Building2, Users, Briefcase, CheckCircle, ArrowRight, Smartphone, Heart, Home, GraduationCap, DollarSign, Car, Upload } from 'lucide-react';
+import { Building2, Users, Briefcase, CheckCircle, ArrowRight, Smartphone, Heart, Home, GraduationCap, DollarSign, Car, Upload, UserCircle, Landmark, ShieldCheck, Bot } from 'lucide-react';
 import heroImage from '@/assets/internship-hero.jpg';
 import teamImage from '@/assets/internship-team.jpg';
 import { useToast } from '@/hooks/use-toast';
@@ -35,7 +35,11 @@ const InternshipPage = () => {
     { id: 'healthcare', name: 'Healthcare', icon: Heart, color: 'accent' },
     { id: 'real-estate', name: 'Real Estate', icon: Home, color: 'primary' },
     { id: 'finance', name: 'Finance', icon: DollarSign, color: 'secondary' },
-    { id: 'education', name: 'Education', icon: GraduationCap, color: 'accent' }
+    { id: 'education', name: 'Education', icon: GraduationCap, color: 'accent' },
+    { id: 'hrms', name: 'HRMS', icon: UserCircle, color: 'primary' },
+    { id: 'banking', name: 'Banking', icon: Landmark, color: 'secondary' },
+    { id: 'insurance', name: 'Insurance', icon: ShieldCheck, color: 'accent' },
+    { id: 'agentic-ai', name: 'Agentic AI (Agentforce)', icon: Bot, color: 'primary' }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -137,7 +141,10 @@ const InternshipPage = () => {
                     ? 'border-primary bg-primary/5' 
                     : 'border-border hover:border-primary/50'
                 }`}
-                onClick={() => setSelectedIndustry(industry.id)}
+                onClick={() => {
+                  setSelectedIndustry(industry.id);
+                  setFormData({ ...formData, domain: industry.id });
+                }}
               >
                 <CardContent className="p-6 text-center space-y-4">
                   <div className={`w-16 h-16 rounded-full bg-${industry.color}/10 flex items-center justify-center mx-auto`}>
