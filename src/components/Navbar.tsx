@@ -101,10 +101,10 @@ const Navbar = () => {
               </div>
             </div>
 
-            <Link to="/internship" className="relative">
+            <Link to="/internship" className="internship-btn-wrapper">
               <Button 
                 variant="outline"
-                className="relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400 animate-glow-pulse font-semibold overflow-hidden bg-gradient-to-r from-transparent via-cloud-50 to-transparent bg-[length:200%_100%] hover:animate-border-beam transition-all duration-300"
+                className="relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400/60 font-semibold bg-white hover:bg-cloud-50 transition-all duration-300 shadow-sm hover:shadow-md"
               >
                 <span className="relative z-10">🎓 Internship Program</span>
               </Button>
@@ -201,10 +201,10 @@ const Navbar = () => {
               </div>
 
               <div className="px-4">
-                <Link to="/internship" className="w-full block relative" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/internship" className="w-full block internship-btn-wrapper" onClick={() => setIsMenuOpen(false)}>
                   <Button 
                     variant="outline"
-                    className="w-full relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400 animate-glow-pulse font-semibold overflow-hidden bg-gradient-to-r from-transparent via-cloud-50 to-transparent bg-[length:200%_100%] hover:animate-border-beam transition-all duration-300"
+                    className="w-full relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400/60 font-semibold bg-white hover:bg-cloud-50 transition-all duration-300 shadow-sm hover:shadow-md"
                   >
                     <span className="relative z-10">🎓 Internship Program</span>
                   </Button>

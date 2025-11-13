@@ -124,10 +124,27 @@ export default {
 				},
 				'border-beam': {
 					'0%': { 
-						backgroundPosition: '0% 50%'
+						'background-position': '0% 0%'
+					},
+					'25%': {
+						'background-position': '100% 0%'
+					},
+					'50%': {
+						'background-position': '100% 100%'
+					},
+					'75%': {
+						'background-position': '0% 100%'
 					},
 					'100%': { 
-						backgroundPosition: '200% 50%'
+						'background-position': '0% 0%'
+					}
+				},
+				'shine': {
+					'0%': {
+						'background-position': '-200% center'
+					},
+					'100%': {
+						'background-position': '200% center'
 					}
 				}
 			},
@@ -140,7 +157,8 @@ export default {
 				'marquee': 'marquee 20s linear infinite',
 				'bounce': 'bounce 1s infinite',
 				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
-				'border-beam': 'border-beam 3s linear infinite'
+				'border-beam': 'border-beam 4s linear infinite',
+				'shine': 'shine 3s linear infinite'
 			}
 		}
 	},
