@@ -3,13 +3,28 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Building2, Users, Briefcase, CheckCircle, ArrowRight, Smartphone, Heart, Home, GraduationCap, DollarSign, Car, Upload, UserCircle, Landmark, ShieldCheck, Bot } from 'lucide-react';
 import heroImage from '@/assets/internship-hero.jpg';
 import teamImage from '@/assets/internship-team.jpg';
+import hrmsImage1 from '@/assets/internship-hrms-1.jpg';
+import bankingImage1 from '@/assets/internship-banking-1.jpg';
+import insuranceImage1 from '@/assets/internship-insurance-1.jpg';
+import aiImage1 from '@/assets/internship-ai-1.jpg';
+import automobileImage1 from '@/assets/internship-automobile-1.jpg';
+import telecomImage1 from '@/assets/internship-telecom-1.jpg';
+import healthcareImage1 from '@/assets/internship-healthcare-1.jpg';
+import realestateImage1 from '@/assets/internship-realestate-1.jpg';
+import financeImage1 from '@/assets/internship-finance-1.jpg';
+import educationImage1 from '@/assets/internship-education-1.jpg';
 import { useToast } from '@/hooks/use-toast';
+import Autoplay from 'embla-carousel-autoplay';
 
 const InternshipPage = () => {
   const { toast } = useToast();
@@ -18,6 +33,15 @@ const InternshipPage = () => {
     name: '',
     email: '',
     phone: '',
+    branch: '',
+    specialization: '',
+    passoutYear: '',
+    qualification: '',
+    programmingLanguages: '',
+    experience: '',
+    internshipMode: '',
+    duration: '',
+    projectExperience: '',
     domain: '',
     resume: null as File | null
   });
@@ -30,16 +54,16 @@ const InternshipPage = () => {
   };
 
   const industries = [
-    { id: 'automobile', name: 'Automobile', icon: Car, color: 'primary' },
-    { id: 'telecom', name: 'Telecom', icon: Smartphone, color: 'secondary' },
-    { id: 'healthcare', name: 'Healthcare', icon: Heart, color: 'accent' },
-    { id: 'real-estate', name: 'Real Estate', icon: Home, color: 'primary' },
-    { id: 'finance', name: 'Finance', icon: DollarSign, color: 'secondary' },
-    { id: 'education', name: 'Education', icon: GraduationCap, color: 'accent' },
-    { id: 'hrms', name: 'HRMS', icon: UserCircle, color: 'primary' },
-    { id: 'banking', name: 'Banking', icon: Landmark, color: 'secondary' },
-    { id: 'insurance', name: 'Insurance', icon: ShieldCheck, color: 'accent' },
-    { id: 'agentic-ai', name: 'Agentic AI (Agentforce)', icon: Bot, color: 'primary' }
+    { id: 'automobile', name: 'Automobile', icon: Car, color: 'primary', images: [automobileImage1] },
+    { id: 'telecom', name: 'Telecom', icon: Smartphone, color: 'secondary', images: [telecomImage1] },
+    { id: 'healthcare', name: 'Healthcare', icon: Heart, color: 'accent', images: [healthcareImage1] },
+    { id: 'real-estate', name: 'Real Estate', icon: Home, color: 'primary', images: [realestateImage1] },
+    { id: 'finance', name: 'Finance', icon: DollarSign, color: 'secondary', images: [financeImage1] },
+    { id: 'education', name: 'Education', icon: GraduationCap, color: 'accent', images: [educationImage1] },
+    { id: 'hrms', name: 'HRMS', icon: UserCircle, color: 'primary', images: [hrmsImage1] },
+    { id: 'banking', name: 'Banking', icon: Landmark, color: 'secondary', images: [bankingImage1] },
+    { id: 'insurance', name: 'Insurance', icon: ShieldCheck, color: 'accent', images: [insuranceImage1] },
+    { id: 'agentic-ai', name: 'Agentic AI (Agentforce)', icon: Bot, color: 'primary', images: [aiImage1] }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -132,11 +156,11 @@ const InternshipPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {industries.map((industry) => (
               <Card
                 key={industry.id}
-                className={`cursor-pointer transition-all hover:shadow-lg border-2 ${
+                className={`cursor-pointer transition-all hover:shadow-lg border-2 overflow-hidden ${
                   selectedIndustry === industry.id 
                     ? 'border-primary bg-primary/5' 
                     : 'border-border hover:border-primary/50'
@@ -146,6 +170,33 @@ const InternshipPage = () => {
                   setFormData({ ...formData, domain: industry.id });
                 }}
               >
+                <Carousel
+                  plugins={[
+                    Autoplay({
+                      delay: 3000,
+                    }),
+                  ]}
+                  opts={{
+                    loop: true,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent>
+                    {industry.images.map((image, idx) => (
+                      <CarouselItem key={idx}>
+                        <div className="aspect-video relative overflow-hidden">
+                          <img 
+                            src={image} 
+                            alt={`${industry.name} domain ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
+                
                 <CardContent className="p-6 text-center space-y-4">
                   <div className={`w-16 h-16 rounded-full bg-${industry.color}/10 flex items-center justify-center mx-auto`}>
                     <industry.icon className={`w-8 h-8 text-${industry.color}`} />
@@ -272,58 +323,215 @@ const InternshipPage = () => {
           <Card className="max-w-3xl mx-auto border-2">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name *</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your full name"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Full Name *</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Enter your full name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email Address *</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+1 (555) 000-0000"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="branch">Branch *</Label>
+                    <Input
+                      id="branch"
+                      type="text"
+                      placeholder="e.g., Computer Science"
+                      required
+                      value={formData.branch}
+                      onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="specialization">Specialization *</Label>
+                    <Input
+                      id="specialization"
+                      type="text"
+                      placeholder="e.g., AI/ML, Web Development"
+                      required
+                      value={formData.specialization}
+                      onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="passoutYear">Passout Year *</Label>
+                    <Select 
+                      value={formData.passoutYear} 
+                      onValueChange={(value) => setFormData({ ...formData, passoutYear: value })}
+                      required
+                    >
+                      <SelectTrigger id="passoutYear">
+                        <SelectValue placeholder="Select year" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {[2024, 2025, 2026, 2027, 2028].map((year) => (
+                          <SelectItem key={year} value={year.toString()}>
+                            {year}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="qualification">Qualification *</Label>
+                    <Select 
+                      value={formData.qualification} 
+                      onValueChange={(value) => setFormData({ ...formData, qualification: value })}
+                      required
+                    >
+                      <SelectTrigger id="qualification">
+                        <SelectValue placeholder="Select qualification" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="btech">B.Tech</SelectItem>
+                        <SelectItem value="bca">BCA</SelectItem>
+                        <SelectItem value="mca">MCA</SelectItem>
+                        <SelectItem value="mba">MBA</SelectItem>
+                        <SelectItem value="msc">M.Sc</SelectItem>
+                        <SelectItem value="bsc">B.Sc</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="programmingLanguages">Programming Languages Known *</Label>
+                    <Input
+                      id="programmingLanguages"
+                      type="text"
+                      placeholder="e.g., Java, Python, JavaScript"
+                      required
+                      value={formData.programmingLanguages}
+                      onChange={(e) => setFormData({ ...formData, programmingLanguages: e.target.value })}
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
+                  <Label>Experience Level *</Label>
+                  <RadioGroup 
+                    value={formData.experience} 
+                    onValueChange={(value) => setFormData({ ...formData, experience: value })}
                     required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="fresher" id="fresher" />
+                      <Label htmlFor="fresher" className="font-normal cursor-pointer">Fresher</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="experienced" id="experienced" />
+                      <Label htmlFor="experienced" className="font-normal cursor-pointer">Experienced</Label>
+                    </div>
+                  </RadioGroup>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number *</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="internshipMode">Mode of Internship *</Label>
+                    <Select 
+                      value={formData.internshipMode} 
+                      onValueChange={(value) => setFormData({ ...formData, internshipMode: value })}
+                      required
+                    >
+                      <SelectTrigger id="internshipMode">
+                        <SelectValue placeholder="Select mode" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="remote">Remote</SelectItem>
+                        <SelectItem value="onsite">On-site</SelectItem>
+                        <SelectItem value="hybrid">Hybrid</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="duration">Duration of Internship *</Label>
+                    <Select 
+                      value={formData.duration} 
+                      onValueChange={(value) => setFormData({ ...formData, duration: value })}
+                      required
+                    >
+                      <SelectTrigger id="duration">
+                        <SelectValue placeholder="Select duration" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1month">1 Month</SelectItem>
+                        <SelectItem value="3months">3 Months</SelectItem>
+                        <SelectItem value="6months">6 Months</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="domain">Preferred Industry Domain *</Label>
-                  <select
-                    id="domain"
+                  <Select 
+                    value={formData.domain} 
+                    onValueChange={(value) => setFormData({ ...formData, domain: value })}
                     required
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    value={formData.domain}
-                    onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
                   >
-                    <option value="">Select an industry</option>
-                    {industries.map((industry) => (
-                      <option key={industry.id} value={industry.id}>
-                        {industry.name}
-                      </option>
-                    ))}
-                  </select>
+                    <SelectTrigger id="domain">
+                      <SelectValue placeholder="Select an industry" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {industries.map((industry) => (
+                        <SelectItem key={industry.id} value={industry.id}>
+                          {industry.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="projectExperience">Have you worked on any real-time project? *</Label>
+                  <Textarea
+                    id="projectExperience"
+                    placeholder="Briefly describe your project experience (if any)"
+                    required
+                    value={formData.projectExperience}
+                    onChange={(e) => setFormData({ ...formData, projectExperience: e.target.value })}
+                    rows={4}
+                    className="resize-none"
+                  />
                 </div>
 
                 <div className="space-y-2">
