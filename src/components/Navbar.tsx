@@ -101,12 +101,12 @@ const Navbar = () => {
               </div>
             </div>
 
-            <Link to="/internship">
+            <Link to="/internship" className="relative">
               <Button 
                 variant="outline"
-                className="text-cloud-800 hover:text-cloud-600 border-cloud-300"
+                className="relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400 animate-glow-pulse font-semibold overflow-hidden bg-gradient-to-r from-transparent via-cloud-50 to-transparent bg-[length:200%_100%] hover:animate-border-beam transition-all duration-300"
               >
-                Internship
+                <span className="relative z-10">🎓 Internship Program</span>
               </Button>
             </Link>
             
@@ -201,12 +201,12 @@ const Navbar = () => {
               </div>
 
               <div className="px-4">
-                <Link to="/internship" className="w-full block" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/internship" className="w-full block relative" onClick={() => setIsMenuOpen(false)}>
                   <Button 
                     variant="outline"
-                    className="w-full text-cloud-800 hover:text-cloud-600 border-cloud-300"
+                    className="w-full relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400 animate-glow-pulse font-semibold overflow-hidden bg-gradient-to-r from-transparent via-cloud-50 to-transparent bg-[length:200%_100%] hover:animate-border-beam transition-all duration-300"
                   >
-                    Internship
+                    <span className="relative z-10">🎓 Internship Program</span>
                   </Button>
                 </Link>
               </div>

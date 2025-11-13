@@ -111,6 +111,24 @@ export default {
 				'marquee': {
 					'0%': { transform: 'translateX(0%)' },
 					'100%': { transform: 'translateX(-50%)' }
+				},
+				'glow-pulse': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px hsl(210 100% 50% / 0.5), 0 0 20px hsl(210 100% 50% / 0.3), inset 0 0 10px hsl(210 100% 50% / 0.1)',
+						borderColor: 'hsl(210 100% 50% / 0.6)'
+					},
+					'50%': { 
+						boxShadow: '0 0 20px hsl(210 100% 50% / 0.8), 0 0 40px hsl(210 100% 50% / 0.5), inset 0 0 20px hsl(210 100% 50% / 0.2)',
+						borderColor: 'hsl(210 100% 50%)'
+					}
+				},
+				'border-beam': {
+					'0%': { 
+						backgroundPosition: '0% 50%'
+					},
+					'100%': { 
+						backgroundPosition: '200% 50%'
+					}
 				}
 			},
 			animation: {
@@ -120,7 +138,9 @@ export default {
 				'fade-out': 'fade-out 0.5s ease-out forwards',
 				'float': 'float 6s ease-in-out infinite',
 				'marquee': 'marquee 20s linear infinite',
-				'bounce': 'bounce 1s infinite'
+				'bounce': 'bounce 1s infinite',
+				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+				'border-beam': 'border-beam 3s linear infinite'
 			}
 		}
 	},
