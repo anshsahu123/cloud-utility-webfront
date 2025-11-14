@@ -146,6 +146,10 @@ export default {
 					'100%': {
 						'background-position': '200% center'
 					}
+				},
+				'border-spin': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
 				}
 			},
 			animation: {
@@ -158,7 +162,8 @@ export default {
 				'bounce': 'bounce 1s infinite',
 				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
 				'border-beam': 'border-beam 4s linear infinite',
-				'shine': 'shine 3s linear infinite'
+				'shine': 'shine 3s linear infinite',
+				'border-spin': 'border-spin 2.5s linear infinite'
 			}
 		}
 	},
