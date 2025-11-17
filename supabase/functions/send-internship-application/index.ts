@@ -113,12 +113,12 @@ const handler = async (req: Request): Promise<Response> => {
     // Send email to company
     const emailResponse = await resend.emails.send({
       from: "Cloud Utility Internships <onboarding@resend.dev>",
-      to: ["hradmin@cloudutility.in"],
+      to: ["sahuansh626@gmail.com"],
       subject: `New Internship Application - ${applicationData.firstName} ${applicationData.lastName} (${applicationData.preferredDomain})`,
       html: htmlContent,
     });
 
-    console.log("Email sent successfully to hradmin@cloudutility.in:", emailResponse);
+    console.log("Email sent successfully to sahuansh626@gmail.com:", emailResponse);
 
     // Send confirmation email to applicant
     const confirmationEmail = await resend.emails.send({
