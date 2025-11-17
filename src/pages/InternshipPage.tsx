@@ -30,15 +30,17 @@ const InternshipPage = () => {
   const { toast } = useToast();
   const [selectedIndustry, setSelectedIndustry] = useState<string>('');
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
+    college: '',
     branch: '',
     specialization: '',
     passoutYear: '',
     qualification: '',
     programmingLanguages: '',
-    experience: '',
+    experience: 'fresher',
     internshipMode: '',
     duration: '',
     projectExperience: '',
@@ -66,12 +68,80 @@ const InternshipPage = () => {
     { id: 'agentic-ai', name: 'Agentic AI (Agentforce)', icon: Bot, color: 'primary', images: [aiImage1] }
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Application Submitted!",
-      description: "We'll review your application and get back to you within 2 weeks.",
-    });
+    
+    try {
+      console.log("Submitting application:", formData);
+      
+      const applicationData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        college: formData.college,
+        branch: formData.branch,
+        specialization: formData.specialization,
+        passoutYear: formData.passoutYear,
+        qualification: formData.qualification,
+        programmingLanguages: formData.programmingLanguages,
+        experience: formData.experience,
+        mode: formData.internshipMode,
+        duration: formData.duration,
+        preferredDomain: formData.domain,
+        realtimeProject: formData.projectExperience,
+        resume: formData.resume?.name || 'No resume uploaded',
+      };
+
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-internship-application`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(applicationData),
+        }
+      );
+
+      const data = await response.json();
+      
+      if (data.success) {
+        toast({
+          title: "Application Submitted Successfully!",
+          description: "Thank you for applying. We've sent a confirmation to your email and notified our HR team.",
+        });
+        
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          college: '',
+          branch: '',
+          specialization: '',
+          passoutYear: '',
+          qualification: '',
+          programmingLanguages: '',
+          experience: 'fresher',
+          internshipMode: '',
+          duration: '',
+          projectExperience: '',
+          domain: '',
+          resume: null,
+        });
+      } else {
+        throw new Error(data.error || 'Failed to submit application');
+      }
+    } catch (error: any) {
+      console.error("Error submitting application:", error);
+      toast({
+        title: "Submission Failed",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -325,17 +395,31 @@ const InternshipPage = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Full Name *</Label>
+                    <Label htmlFor="firstName">First Name *</Label>
                     <Input
-                      id="name"
+                      id="firstName"
                       type="text"
-                      placeholder="Enter your full name"
+                      placeholder="Enter your first name"
                       required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     />
                   </div>
 
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName">Last Name *</Label>
+                    <Input
+                      id="lastName"
+                      type="text"
+                      placeholder="Enter your last name"
+                      required
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="email">Email Address *</Label>
                     <Input
@@ -347,18 +431,30 @@ const InternshipPage = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
                   </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number *</Label>
                     <Input
                       id="phone"
                       type="tel"
-                      placeholder="+1 (555) 000-0000"
+                      placeholder="+91 98765 43210"
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="college">College / University *</Label>
+                    <Input
+                      id="college"
+                      type="text"
+                      placeholder="Enter your college name"
+                      required
+                      value={formData.college}
+                      onChange={(e) => setFormData({ ...formData, college: e.target.value })}
                     />
                   </div>
 
