@@ -620,7 +620,7 @@ const InternshipPage = () => {
                       <SelectValue placeholder="Select an industry" />
                     </SelectTrigger>
                     <SelectContent>
-                      {industries.map((industry) => (
+                      {industries.filter(industry => !industry.disabled).map((industry) => (
                         <SelectItem key={industry.id} value={industry.id}>
                           {industry.name}
                         </SelectItem>
