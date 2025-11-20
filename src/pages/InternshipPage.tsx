@@ -56,16 +56,16 @@ const InternshipPage = () => {
   };
 
   const industries = [
-    { id: 'automobile', name: 'Automobile', icon: Car, color: 'primary', images: [automobileImage1] },
-    { id: 'telecom', name: 'Telecom', icon: Smartphone, color: 'secondary', images: [telecomImage1] },
-    { id: 'healthcare', name: 'Healthcare', icon: Heart, color: 'accent', images: [healthcareImage1] },
-    { id: 'real-estate', name: 'Real Estate', icon: Home, color: 'primary', images: [realestateImage1] },
-    { id: 'finance', name: 'Finance', icon: DollarSign, color: 'secondary', images: [financeImage1] },
-    { id: 'education', name: 'Education', icon: GraduationCap, color: 'accent', images: [educationImage1] },
-    { id: 'hrms', name: 'HRMS', icon: UserCircle, color: 'primary', images: [hrmsImage1] },
-    { id: 'banking', name: 'Banking', icon: Landmark, color: 'secondary', images: [bankingImage1] },
-    { id: 'insurance', name: 'Insurance', icon: ShieldCheck, color: 'accent', images: [insuranceImage1] },
-    { id: 'agentic-ai', name: 'Agentic AI (Agentforce)', icon: Bot, color: 'primary', images: [aiImage1] }
+    { id: 'automobile', name: 'Automobile', icon: Car, color: 'primary', images: [automobileImage1], disabled: false },
+    { id: 'telecom', name: 'Telecom', icon: Smartphone, color: 'secondary', images: [telecomImage1], disabled: false },
+    { id: 'healthcare', name: 'Healthcare', icon: Heart, color: 'accent', images: [healthcareImage1], disabled: false },
+    { id: 'real-estate', name: 'Real Estate', icon: Home, color: 'primary', images: [realestateImage1], disabled: false },
+    { id: 'finance', name: 'Finance', icon: DollarSign, color: 'secondary', images: [financeImage1], disabled: false },
+    { id: 'education', name: 'Education', icon: GraduationCap, color: 'accent', images: [educationImage1], disabled: false },
+    { id: 'hrms', name: 'HRMS', icon: UserCircle, color: 'primary', images: [hrmsImage1], disabled: false },
+    { id: 'banking', name: 'Banking', icon: Landmark, color: 'secondary', images: [bankingImage1], disabled: true },
+    { id: 'insurance', name: 'Insurance', icon: ShieldCheck, color: 'accent', images: [insuranceImage1], disabled: false },
+    { id: 'agentic-ai', name: 'Agentic AI (Agentforce)', icon: Bot, color: 'primary', images: [aiImage1], disabled: true }
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -160,9 +160,9 @@ const InternshipPage = () => {
                 <span className="text-sm font-semibold text-primary">Limited-Time Opportunity</span>
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-                Join Our Live Project{' '}
-                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                <span className="text-foreground">Join Our Live Project</span>{' '}
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-extrabold">
                   Internship Program
                 </span>
               </h1>
@@ -230,12 +230,24 @@ const InternshipPage = () => {
             {industries.map((industry) => (
               <Card
                 key={industry.id}
-                className={`cursor-pointer transition-all hover:shadow-lg border-2 overflow-hidden ${
+                className={`transition-all border-2 overflow-hidden ${
+                  industry.disabled
+                    ? 'opacity-60 cursor-not-allowed'
+                    : 'cursor-pointer hover:shadow-lg'
+                } ${
                   selectedIndustry === industry.id 
                     ? 'border-primary bg-primary/5' 
                     : 'border-border hover:border-primary/50'
                 }`}
                 onClick={() => {
+                  if (industry.disabled) {
+                    toast({
+                      title: "Seat Full",
+                      description: "Seat full for this domain project.",
+                      variant: "default",
+                    });
+                    return;
+                  }
                   setSelectedIndustry(industry.id);
                   setFormData({ ...formData, domain: industry.id });
                 }}
