@@ -294,7 +294,7 @@ const InternshipPage = () => {
             ))}
           </div>
 
-          {selectedIndustry && (
+          {selectedIndustry && !industries.find(i => i.id === selectedIndustry)?.disabled && (
             <div className="mt-12 text-center animate-fade-in">
               <Button 
                 size="lg"
