@@ -298,7 +298,6 @@ const CaseStudiesPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       <main className="flex-grow">
         <section className="bg-gradient-to-b from-background via-cloud-50/30 to-background py-20 md:py-32">
           <div className="cloud-container">
@@ -470,7 +469,6 @@ const CaseStudiesPage = () => {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 };

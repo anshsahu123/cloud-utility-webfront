@@ -9,6 +9,9 @@ import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { Zap, Users, Database, BarChart2, TrendingUp, CheckSquare, Star, ShoppingCart, Briefcase, Code } from 'lucide-react';
+import CaseStudiesPage from './CaseStudiesPage';
+import AboutPage from './AboutPage';
+import ServicesPage from './ServicesPage';
 
 const SalesCloudSection = () => (
   <div className="bg-white rounded-xl shadow-md p-8 my-8">
@@ -911,14 +914,14 @@ const Index = () => {
         
         <div id="services" className="section-padding bg-cloud-50">
           <div className="cloud-container">
-            <div className="text-center max-w-3xl mx-auto mb-12">
+            {/* <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">Our Salesforce Services</h2>
               <p className="font-sans text-lg text-gray-600">
                 Leverage the full potential of Salesforce with our comprehensive suite of services tailored to your business needs.
               </p>
-            </div>
+            </div> */}
             
-            <Services />
+            <ServicesPage />
             
             <div id="sales-cloud" className="mt-16">
               <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 text-cloud-800">Sales Cloud Solutions</h2>
@@ -953,17 +956,11 @@ const Index = () => {
         </div>
         
         <div id="about">
-          <About />
+          <AboutPage />
         </div>
         
         <div id="live-projects" className="section-padding bg-gray-50">
-          <div className="cloud-container">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">Live Projects</h2>
-              <p className="font-sans text-lg text-gray-600">
-                Discover how our Salesforce solutions have helped businesses across industries achieve remarkable results.
-              </p>
-            </div>
+          <div className="cloud-container"> 
             
             <CaseStudies />
             
@@ -981,10 +978,12 @@ const Index = () => {
               <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 text-cloud-800">Financial Services Case Study</h2>
               <FinancialServicesCaseStudy />
             </div>
+
+            <CaseStudiesPage />
           </div>
         </div>
         
-        <div id="testimonials" className="section-padding">
+        {/* <div id="testimonials" className="section-padding">
           <div className="cloud-container">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">What Our Clients Say</h2>
@@ -993,7 +992,7 @@ const Index = () => {
               </p>
             </div>
             
-            <Testimonials />
+
             
             <div id="enterprise-testimonials" className="mt-16">
               <h2 className="font-display text-2xl md:text-3xl font-bold mb-8 text-cloud-800">Enterprise Client Testimonials</h2>
@@ -1010,7 +1009,7 @@ const Index = () => {
               <SmallBusinessTestimonials />
             </div>
           </div>
-        </div>
+        </div> */}
         
         <div id="contact">
           <Contact />

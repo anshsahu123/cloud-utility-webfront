@@ -1,11 +1,12 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -13,9 +14,23 @@ const Navbar = () => {
 
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    
+    // If we're not on the homepage, navigate to homepage first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Wait for navigation and DOM update, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // We're already on homepage, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -36,6 +51,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <button 
+              onClick={() => scrollToSection('about')} 
+              className="text-cloud-800 hover:text-cloud-600 transition-colors"
+            >
+              About Us
+            </button>
             <div className="relative group">
               <button 
                 onClick={() => scrollToSection('services')}
@@ -64,13 +85,6 @@ const Navbar = () => {
                 </button>
               </div>
             </div>
-            
-            <button 
-              onClick={() => scrollToSection('about')} 
-              className="text-cloud-800 hover:text-cloud-600 transition-colors"
-            >
-              About Us
-            </button>
             
             <div className="relative group">
               <button 
@@ -101,14 +115,14 @@ const Navbar = () => {
               </div>
             </div>
 
-            <Link to="/internship">
-              <Button 
-                variant="outline"
-                className="text-cloud-800 hover:text-cloud-600 border-cloud-300"
-              >
-                Internship
-              </Button>
-            </Link>
+           <Link to="/internship">
+  <Button 
+
+    className="text-cloud-800 bg-white hover:bg-cloud-50 transition-colors"
+  >
+    Open Internship 
+  </Button>
+</Link>
             
             <button
               onClick={() => scrollToSection('contact')}
@@ -202,13 +216,13 @@ const Navbar = () => {
 
               <div className="px-4">
                 <Link to="/internship" className="w-full block" onClick={() => setIsMenuOpen(false)}>
-                  <Button 
-                    variant="outline"
-                    className="w-full text-cloud-800 hover:text-cloud-600 border-cloud-300"
-                  >
-                    Internship
-                  </Button>
-                </Link>
+  <Button 
+    variant="outline"
+    className="animated-border-button w-full text-cloud-800 hover:text-cloud-600 border-cloud-300"
+  >
+    Open Internship
+  </Button>
+</Link>
               </div>
               
               <div className="px-4">

@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Award, Briefcase, TrendingUp, Users, Target, Shield } from 'lucide-react';
+import About from '@/components/About';
 
 const AboutPage = () => {
   const stats = [
@@ -14,22 +15,8 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <About />
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-cloud-50 py-24">
-          <div className="cloud-container">
-            <div className="text-center max-w-3xl mx-auto">
-              <h1 className="font-display text-4xl md:text-5xl font-bold mb-6 text-cloud-800">
-                About Cloud Utility
-              </h1>
-              <p className="font-sans text-lg text-gray-600">
-                Your trusted partner in Salesforce excellence, delivering high-impact solutions 
-                that drive business growth and operational efficiency.
-              </p>
-            </div>
-          </div>
-        </section>
         
         {/* Mission & Vision */}
         <section className="py-16">
@@ -146,7 +133,7 @@ const AboutPage = () => {
         </section>
         
         {/* Team Section */}
-        <section className="py-16">
+        {/* <section className="py-16">
           <div className="cloud-container">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="font-display text-3xl font-bold mb-4 text-cloud-800">Our Leadership Team</h2>
@@ -194,9 +181,8 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
-      <Footer />
     </div>
   );
 };

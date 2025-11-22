@@ -9,7 +9,9 @@ const About = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-cloud-800">About Cloud Utility</h2>
           <p className="font-sans text-lg text-gray-600">
-            We're a team of Salesforce experts dedicated to transforming businesses through innovative cloud solutions.
+            We're a team of Salesforce experts dedicated to transforming businesses through innovative cloud solutions
+                Your trusted partner in Salesforce excellence, delivering high-impact solutions 
+                that drive business growth and operational efficiency.
           </p>
         </div>
         
