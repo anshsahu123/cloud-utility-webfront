@@ -1,0 +1,4 @@
+project_id = "vtrsvxcmmdhwumuoxile"
+
+[functions.send-internship-application]
+verify_jwt = false

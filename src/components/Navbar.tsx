@@ -115,14 +115,14 @@ const Navbar = () => {
               </div>
             </div>
 
-           <Link to="/internship">
-  <Button 
-
-    className="text-cloud-800 bg-white hover:bg-cloud-50 transition-colors"
-  >
-    Open Internship 
-  </Button>
-</Link>
+            <Link to="/internship" className="internship-btn-wrapper">
+              <Button 
+                variant="outline"
+                className="relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400/60 font-semibold bg-white hover:bg-cloud-50 transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                <span className="relative z-10">🎓 Internship Program</span>
+              </Button>
+            </Link>
             
             <button
               onClick={() => scrollToSection('contact')}
@@ -215,14 +215,14 @@ const Navbar = () => {
               </div>
 
               <div className="px-4">
-                <Link to="/internship" className="w-full block" onClick={() => setIsMenuOpen(false)}>
-  <Button 
-    variant="outline"
-    className="animated-border-button w-full text-cloud-800 hover:text-cloud-600 border-cloud-300"
-  >
-    Open Internship
-  </Button>
-</Link>
+                <Link to="/internship" className="w-full block internship-btn-wrapper" onClick={() => setIsMenuOpen(false)}>
+                  <Button 
+                    variant="outline"
+                    className="w-full relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400/60 font-semibold bg-white hover:bg-cloud-50 transition-all duration-300 shadow-sm hover:shadow-md"
+                  >
+                    <span className="relative z-10">🎓 Internship Program</span>
+                  </Button>
+                </Link>
               </div>
               
               <div className="px-4">

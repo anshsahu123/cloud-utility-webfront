@@ -1,57 +1,17 @@
-import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import {
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
-  ShoppingCart,
-  Briefcase,
-  Code,
-} from "lucide-react";
+import React from 'react';
+import { Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const navigate = useNavigate();
-  const location = useLocation();
-
+  
   const scrollToSection = (sectionId: string) => {
-    // Check if we're on the home page
-    if (location.pathname !== "/") {
-      // Navigate to home page first, then scroll
-      navigate("/");
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    } else {
-      // Already on home page, just scroll
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const navigate = useNavigate();
-  // const location = useLocation();
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // const currentYear = new Date().getFullYear();
-
-  // const scrollToSection = (sectionId: string) => {
-  //   const element = document.getElementById(sectionId);
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // };
-
+  
   return (
     <footer className="bg-cloud-800 text-white">
       <div className="cloud-container py-12">
@@ -79,12 +39,16 @@ const Footer = () => {
               <a
                 href="https://www.linkedin.com/company/108646759/admin/dashboard/"
                 className="text-cloud-200 hover:text-white transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Linkedin size={20} />
               </a>
               <a
                 href="https://www.instagram.com/cloud_utility/" 
                 className="text-cloud-200 hover:text-white transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Instagram size={20} />
               </a>
@@ -190,15 +154,14 @@ const Footer = () => {
                   Services
                 </button>
               </li>
-              <div className="text-cloud-200 hover:text-white transition-colors">
+              <li>
                 <Link
                   to="/internship"
-                  className="w-full block"
-                  onClick={() => setIsMenuOpen(false)}
+                  className="text-cloud-200 hover:text-white transition-colors block"
                 >
                   Career
                 </Link>
-              </div>
+              </li>
             </ul>
           </div>
 

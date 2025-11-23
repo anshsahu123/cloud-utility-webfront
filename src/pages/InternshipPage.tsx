@@ -327,6 +327,7 @@ const InternshipPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {industries.map((industry) => (
               <Card
                 key={industry.id}
@@ -339,6 +340,18 @@ const InternshipPage = () => {
                     ? "border-primary bg-primary/5"
                     : "border-border hover:border-primary/50"
                 }`}
+                onClick={() => {
+                  if (industry.disabled) {
+                    toast({
+                      title: "Seat Full",
+                      description: "Seat full for this domain project.",
+                      variant: "default",
+                    });
+                    return;
+                  }
+                  setSelectedIndustry(industry.id);
+                  setFormData({ ...formData, domain: industry.id });
+                }}
                 onClick={() => {
                   if (industry.disabled) {
                     toast({

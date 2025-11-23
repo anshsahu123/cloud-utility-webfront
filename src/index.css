@@ -107,6 +107,38 @@
   .card-hover {
     @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
+  
+  .internship-btn-wrapper {
+    @apply relative inline-block overflow-visible;
+  }
+  
+  .internship-btn-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 0.5rem;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      transparent 270deg,
+      hsl(210 100% 60%) 300deg,
+      hsl(210 100% 70%) 330deg,
+      hsl(210 100% 60%) 360deg,
+      transparent 390deg
+    );
+    animation: border-spin 2.5s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .internship-btn-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 0.375rem;
+    background: hsl(var(--background));
+    z-index: -1;
+  }
 }
 
 /* Add this to your index.css or global CSS file */
