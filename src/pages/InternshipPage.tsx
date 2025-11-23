@@ -178,55 +178,54 @@ const InternshipPage = () => {
     },
   ];
 
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
 
-  try {
-    const fd = new FormData();
+    try {
+      const fd = new FormData();
 
-    // Append all text fields
-    Object.entries(formData).forEach(([key, value]) => {
-      if (key !== "resume") {
-        fd.append(key, value as string);
+      // Append all text fields
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key !== "resume") {
+          fd.append(key, value as string);
+        }
+      });
+
+      // Append file (VERY IMPORTANT)
+      if (formData.resume) {
+        fd.append("resume", formData.resume);
       }
-    });
 
-    // Append file (VERY IMPORTANT)
-    if (formData.resume) {
-      fd.append("resume", formData.resume);
+      const response = await fetch(`${API_BASE_URL}/internship`, {
+        method: "POST",
+        body: fd,
+        // ❌ NO HEADERS! Browser sets correct multipart boundary automatically
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit form");
+      }
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for reaching out. We'll be in touch shortly.",
+      });
+
+      setSuccess(true);
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description:
+          error instanceof Error ? error.message : "Error submitting form",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
     }
-
-    const response = await fetch(`${API_BASE_URL}/internship`, {
-      method: "POST",
-      body: fd, 
-      // ❌ NO HEADERS! Browser sets correct multipart boundary automatically
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || "Failed to submit form");
-    }
-
-    toast({
-      title: "Message sent successfully!",
-      description: "Thank you for reaching out. We'll be in touch shortly.",
-    });
-
-    setSuccess(true);
-
-  } catch (error) {
-    toast({
-      title: "Something went wrong",
-      description: error instanceof Error ? error.message : "Error submitting form",
-      variant: "destructive",
-    });
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -327,92 +326,93 @@ const InternshipPage = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {industries.map((industry) => (
-              <Card
-                key={industry.id}
-                className={`transition-all border-2 overflow-hidden ${
-                  industry.disabled
-                    ? "opacity-60 cursor-not-allowed"
-                    : "cursor-pointer hover:shadow-lg"
-                } ${
-                  selectedIndustry === industry.id
-                    ? "border-primary bg-primary/5"
-                    : "border-border hover:border-primary/50"
-                }`}
-                onClick={() => {
-                  if (industry.disabled) {
-                    toast({
-                      title: "Seat Full",
-                      description: "Seat full for this domain project.",
-                      variant: "default",
-                    });
-                    return;
-                  }
-                  setSelectedIndustry(industry.id);
-                  setFormData({ ...formData, domain: industry.id });
-                }}
-                onClick={() => {
-                  if (industry.disabled) {
-                    toast({
-                      title: "Seat Full",
-                      description: "Seat full for this domain project.",
-                      variant: "default",
-                    });
-                    return;
-                  }
-                  setSelectedIndustry(industry.id);
-                  setFormData({ ...formData, domain: industry.id });
-                }}
-              >
-                <Carousel
-                  plugins={[
-                    Autoplay({
-                      delay: 3000,
-                    }),
-                  ]}
-                  opts={{
-                    loop: true,
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {industries.map((industry) => (
+                <Card
+                  key={industry.id}
+                  className={`transition-all border-2 overflow-hidden ${
+                    industry.disabled
+                      ? "opacity-60 cursor-not-allowed"
+                      : "cursor-pointer hover:shadow-lg"
+                  } ${
+                    selectedIndustry === industry.id
+                      ? "border-primary bg-primary/5"
+                      : "border-border hover:border-primary/50"
+                  }`}
+                  onClick={() => {
+                    if (industry.disabled) {
+                      toast({
+                        title: "Seat Full",
+                        description: "Seat full for this domain project.",
+                        variant: "default",
+                      });
+                      return;
+                    }
+                    setSelectedIndustry(industry.id);
+                    setFormData({ ...formData, domain: industry.id });
                   }}
-                  className="w-full"
+                  onClick={() => {
+                    if (industry.disabled) {
+                      toast({
+                        title: "Seat Full",
+                        description: "Seat full for this domain project.",
+                        variant: "default",
+                      });
+                      return;
+                    }
+                    setSelectedIndustry(industry.id);
+                    setFormData({ ...formData, domain: industry.id });
+                  }}
                 >
-                  <CarouselContent>
-                    {industry.images.map((image, idx) => (
-                      <CarouselItem key={idx}>
-                        <div className="aspect-video relative overflow-hidden">
-                          <img
-                            src={image}
-                            alt={`${industry.name} domain ${idx + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
-
-                <CardContent className="p-6 text-center space-y-4">
-                  <div
-                    className={`w-16 h-16 rounded-full bg-${industry.color}/10 flex items-center justify-center mx-auto`}
+                  <Carousel
+                    plugins={[
+                      Autoplay({
+                        delay: 3000,
+                      }),
+                    ]}
+                    opts={{
+                      loop: true,
+                    }}
+                    className="w-full"
                   >
-                    <industry.icon
-                      className={`w-8 h-8 text-${industry.color}`}
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground">
-                    {industry.name}
-                  </h3>
-                  {selectedIndustry === industry.id && (
-                    <p className="text-sm text-muted-foreground animate-fade-in">
-                      You'll get exposure to live projects in the{" "}
-                      {industry.name.toLowerCase()} industry, working with real
-                      datasets and solving real business challenges.
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+                    <CarouselContent>
+                      {industry.images.map((image, idx) => (
+                        <CarouselItem key={idx}>
+                          <div className="aspect-video relative overflow-hidden">
+                            <img
+                              src={image}
+                              alt={`${industry.name} domain ${idx + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
+
+                  <CardContent className="p-6 text-center space-y-4">
+                    <div
+                      className={`w-16 h-16 rounded-full bg-${industry.color}/10 flex items-center justify-center mx-auto`}
+                    >
+                      <industry.icon
+                        className={`w-8 h-8 text-${industry.color}`}
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">
+                      {industry.name}
+                    </h3>
+                    {selectedIndustry === industry.id && (
+                      <p className="text-sm text-muted-foreground animate-fade-in">
+                        You'll get exposure to live projects in the{" "}
+                        {industry.name.toLowerCase()} industry, working with
+                        real datasets and solving real business challenges.
+                      </p>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
 
           {selectedIndustry &&
@@ -551,296 +551,66 @@ const InternshipPage = () => {
           <Card className="max-w-3xl mx-auto border-2">
             <CardContent className="p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName">First Name *</Label>
-                    <Input
-                      id="firstName"
-                      type="text"
-                      placeholder="Enter your first name"
-                      required
-                      value={formData.firstName}
-                      onChange={(e) =>
-                        setFormData({ ...formData, firstName: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="lastName">Last Name *</Label>
-                    <Input
-                      id="lastName"
-                      type="text"
-                      placeholder="Enter your last name"
-                      required
-                      value={formData.lastName}
-                      onChange={(e) =>
-                        setFormData({ ...formData, lastName: e.target.value })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="your.email@example.com"
-                      required
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number *</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="+91 98765 43210"
-                      required
-                      value={formData.phone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, phone: e.target.value })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="college">College / University *</Label>
-                    <Input
-                      id="college"
-                      type="text"
-                      placeholder="Enter your college name"
-                      required
-                      value={formData.college}
-                      onChange={(e) =>
-                        setFormData({ ...formData, college: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="branch">Branch *</Label>
-                    <Input
-                      id="branch"
-                      type="text"
-                      placeholder="e.g., Computer Science"
-                      required
-                      value={formData.branch}
-                      onChange={(e) =>
-                        setFormData({ ...formData, branch: e.target.value })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="specialization">Specialization *</Label>
-                    <Input
-                      id="specialization"
-                      type="text"
-                      placeholder="e.g., AI/ML, Web Development"
-                      required
-                      value={formData.specialization}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          specialization: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="passoutYear">Passout Year *</Label>
-                    <Select
-                      value={formData.passoutYear}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, passoutYear: value })
-                      }
-                      required
-                    >
-                      <SelectTrigger id="passoutYear">
-                        <SelectValue placeholder="Select year" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {[2024, 2025, 2026, 2027, 2028].map((year) => (
-                          <SelectItem key={year} value={year.toString()}>
-                            {year}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="qualification">Qualification *</Label>
-                    <Select
-                      value={formData.qualification}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, qualification: value })
-                      }
-                      required
-                    >
-                      <SelectTrigger id="qualification">
-                        <SelectValue placeholder="Select qualification" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="btech">B.Tech</SelectItem>
-                        <SelectItem value="bca">BCA</SelectItem>
-                        <SelectItem value="mca">MCA</SelectItem>
-                        <SelectItem value="mba">MBA</SelectItem>
-                        <SelectItem value="msc">M.Sc</SelectItem>
-                        <SelectItem value="bsc">B.Sc</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="programmingLanguages">
-                      Programming Languages Known *
-                    </Label>
-                    <Input
-                      id="programmingLanguages"
-                      type="text"
-                      placeholder="e.g., Java, Python, JavaScript"
-                      required
-                      value={formData.programmingLanguages}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          programmingLanguages: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="name">Full Name *</Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    required
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                  />
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Experience Level *</Label>
-                  <RadioGroup
-                    value={formData.experience}
-                    onValueChange={(value) =>
-                      setFormData({ ...formData, experience: value })
-                    }
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
                     required
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="fresher" id="fresher" />
-                      <Label
-                        htmlFor="fresher"
-                        className="font-normal cursor-pointer"
-                      >
-                        Fresher
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="experienced" id="experienced" />
-                      <Label
-                        htmlFor="experienced"
-                        className="font-normal cursor-pointer"
-                      >
-                        Experienced
-                      </Label>
-                    </div>
-                  </RadioGroup>
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                  />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="internshipMode">Mode of Internship *</Label>
-                    <Select
-                      value={formData.internshipMode}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, internshipMode: value })
-                      }
-                      required
-                    >
-                      <SelectTrigger id="internshipMode">
-                        <SelectValue placeholder="Select mode" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="remote">Remote</SelectItem>
-                        <SelectItem value="onsite">On-site</SelectItem>
-                        <SelectItem value="hybrid">Hybrid</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="duration">Duration of Internship *</Label>
-                    <Select
-                      value={formData.duration}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, duration: value })
-                      }
-                      required
-                    >
-                      <SelectTrigger id="duration">
-                        <SelectValue placeholder="Select duration" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1month">1 Month</SelectItem>
-                        <SelectItem value="3months">3 Months</SelectItem>
-                        <SelectItem value="6months">6 Months</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+1 (555) 000-0000"
+                    required
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="domain">Preferred Industry Domain *</Label>
-                  <Select
+                  <select
+                    id="domain"
+                    required
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     value={formData.domain}
-                    onValueChange={(value) =>
-                      setFormData({ ...formData, domain: value })
-                    }
-                    required
-                  >
-                    <SelectTrigger id="domain">
-                      <SelectValue placeholder="Select an industry" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {industries
-                        .filter((industry) => !industry.disabled)
-                        .map((industry) => (
-                          <SelectItem key={industry.id} value={industry.id}>
-                            {industry.name}
-                          </SelectItem>
-                        ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="projectExperience">
-                    Have you worked on any real-time project? *
-                  </Label>
-                  <Textarea
-                    id="projectExperience"
-                    placeholder="Briefly describe your project experience (if any)"
-                    required
-                    value={formData.projectExperience}
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        projectExperience: e.target.value,
-                      })
+                      setFormData({ ...formData, domain: e.target.value })
                     }
-                    rows={4}
-                    className="resize-none"
-                  />
+                  >
+                    <option value="">Select an industry</option>
+                    {industries.map((industry) => (
+                      <option key={industry.id} value={industry.id}>
+                        {industry.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="space-y-2">
