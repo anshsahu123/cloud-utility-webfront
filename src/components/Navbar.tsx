@@ -115,12 +115,12 @@ const Navbar = () => {
               </div>
             </div>
 
-            <Link to="/internship" className="internship-btn-wrapper">
+            <Link to="/internship" >
               <Button 
                 variant="outline"
                 className="relative text-cloud-800 hover:text-cloud-600 border-2 border-cloud-400/60 font-semibold bg-white hover:bg-cloud-50 transition-all duration-300 shadow-sm hover:shadow-md"
               >
-                <span className="relative z-10">🎓 Internship Program</span>
+                <span className="relative z-10">🎓 Internship Open</span>
               </Button>
             </Link>
             

@@ -63,6 +63,8 @@ import Autoplay from "embla-carousel-autoplay";
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
 const InternshipPage = () => {
+ 
+
   const { toast } = useToast();
 
   const [loading, setLoading] = useState(false);
@@ -300,11 +302,6 @@ const InternshipPage = () => {
             where selected candidates can work with our team on real industry
             projects and gain practical experience.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
-            We're not a training institute — we're a genuine organization
-            focused on client work and live Salesforce and web projects. Think
-            of this as a real corporate internship, just like big MNCs offer.
-          </p>
         </div>
       </section>
 
@@ -325,95 +322,81 @@ const InternshipPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {industries.map((industry) => (
-                <Card
-                  key={industry.id}
-                  className={`transition-all border-2 overflow-hidden ${
-                    industry.disabled
-                      ? "opacity-60 cursor-not-allowed"
-                      : "cursor-pointer hover:shadow-lg"
-                  } ${
-                    selectedIndustry === industry.id
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/50"
-                  }`}
-                  onClick={() => {
-                    if (industry.disabled) {
-                      toast({
-                        title: "Seat Full",
-                        description: "Seat full for this domain project.",
-                        variant: "default",
-                      });
-                      return;
-                    }
-                    setSelectedIndustry(industry.id);
-                    setFormData({ ...formData, domain: industry.id });
-                  }}
-                  onClick={() => {
-                    if (industry.disabled) {
-                      toast({
-                        title: "Seat Full",
-                        description: "Seat full for this domain project.",
-                        variant: "default",
-                      });
-                      return;
-                    }
-                    setSelectedIndustry(industry.id);
-                    setFormData({ ...formData, domain: industry.id });
-                  }}
-                >
-                  <Carousel
-                    plugins={[
-                      Autoplay({
-                        delay: 3000,
-                      }),
-                    ]}
-                    opts={{
-                      loop: true,
-                    }}
-                    className="w-full"
-                  >
-                    <CarouselContent>
-                      {industry.images.map((image, idx) => (
-                        <CarouselItem key={idx}>
-                          <div className="aspect-video relative overflow-hidden">
-                            <img
-                              src={image}
-                              alt={`${industry.name} domain ${idx + 1}`}
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                  </Carousel>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+  {industries.map((industry) => (
+    <Card
+      key={industry.id}
+      className={`transition-all border-2 overflow-hidden ${
+        industry.disabled
+          ? "opacity-60 cursor-not-allowed"
+          : "cursor-pointer hover:shadow-lg"
+      } ${
+        selectedIndustry === industry.id
+          ? "border-primary bg-primary/5"
+          : "border-border hover:border-primary/50"
+      }`}
+      onClick={() => {
+        if (industry.disabled) {
+          toast({
+            title: "Seat Full",
+            description: "Seat full for this domain project.",
+            variant: "default",
+          });
+          return;
+        }
+        setSelectedIndustry(industry.id);
+        setFormData({ ...formData, domain: industry.id });
+      }}
+    >
+      <Carousel
+        plugins={[
+          Autoplay({
+            delay: 3000,
+          }),
+        ]}
+        opts={{
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent>
+          {industry.images.map((image, idx) => (
+            <CarouselItem key={idx}>
+              <div className="aspect-video relative overflow-hidden">
+                <img
+                  src={image}
+                  alt={`${industry.name} domain ${idx + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
 
-                  <CardContent className="p-6 text-center space-y-4">
-                    <div
-                      className={`w-16 h-16 rounded-full bg-${industry.color}/10 flex items-center justify-center mx-auto`}
-                    >
-                      <industry.icon
-                        className={`w-8 h-8 text-${industry.color}`}
-                      />
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground">
-                      {industry.name}
-                    </h3>
-                    {selectedIndustry === industry.id && (
-                      <p className="text-sm text-muted-foreground animate-fade-in">
-                        You'll get exposure to live projects in the{" "}
-                        {industry.name.toLowerCase()} industry, working with
-                        real datasets and solving real business challenges.
-                      </p>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+      <CardContent className="p-6 text-center space-y-4">
+        <div
+          className={`w-16 h-16 rounded-full bg-${industry.color}/10 flex items-center justify-center mx-auto`}
+        >
+          <industry.icon
+            className={`w-8 h-8 text-${industry.color}`}
+          />
+        </div>
+        <h3 className="text-xl font-bold text-foreground">
+          {industry.name}
+        </h3>
+        {selectedIndustry === industry.id && (
+          <p className="text-sm text-muted-foreground animate-fade-in">
+            You'll get exposure to live projects in the{" "}
+            {industry.name.toLowerCase()} industry, working with
+            real datasets and solving real business challenges.
+          </p>
+        )}
+      </CardContent>
+    </Card>
+  ))}
+</div>  
 
           {selectedIndustry &&
             !industries.find((i) => i.id === selectedIndustry)?.disabled && (
@@ -547,117 +530,319 @@ const InternshipPage = () => {
               on active projects and gain real-world experience.
             </p>
           </div>
+ <Card className="max-w-3xl mx-auto border-2">
+      <CardContent className="p-8">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Full Name */}
+          <div className="space-y-2">
+            <Label htmlFor="name">Full Name *</Label>
+            <Input
+              id="name"
+              type="text"
+              placeholder="Enter your full name"
+              required
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+            />
+          </div>
 
-          <Card className="max-w-3xl mx-auto border-2">
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Full Name *</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="Enter your full name"
-                    required
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
+          {/* Email and Phone */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email Address *</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="your.email@example.com"
+                required
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+              />
+            </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email Address *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    required
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number *</Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="+91 98765 43210"
+                required
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
+              />
+            </div>
+          </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number *</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    required
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                  />
-                </div>
+          {/* College and Branch */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="college">College / University *</Label>
+              <Input
+                id="college"
+                type="text"
+                placeholder="Enter your college name"
+                required
+                value={formData.college}
+                onChange={(e) =>
+                  setFormData({ ...formData, college: e.target.value })
+                }
+              />
+            </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="domain">Preferred Industry Domain *</Label>
-                  <select
-                    id="domain"
-                    required
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    value={formData.domain}
-                    onChange={(e) =>
-                      setFormData({ ...formData, domain: e.target.value })
-                    }
-                  >
-                    <option value="">Select an industry</option>
-                    {industries.map((industry) => (
-                      <option key={industry.id} value={industry.id}>
-                        {industry.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+            <div className="space-y-2">
+              <Label htmlFor="branch">Branch *</Label>
+              <Input
+                id="branch"
+                type="text"
+                placeholder="e.g., Computer Science"
+                required
+                value={formData.branch}
+                onChange={(e) =>
+                  setFormData({ ...formData, branch: e.target.value })
+                }
+              />
+            </div>
+          </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="resume">Resume / CV *</Label>
-                  <div className="flex items-center gap-4">
-                    <Input
-                      id="resume"
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      required
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          resume: e.target.files?.[0] || null,
-                        })
-                      }
-                      className="cursor-pointer"
-                    />
-                    <Upload className="w-5 h-5 text-muted-foreground" />
-                  </div>
-                  <p className="text-xs text-muted-foreground">
-                    Accepted formats: PDF, DOC, DOCX (Max 5MB)
-                  </p>
-                </div>
+          {/* Specialization and Passout Year */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="specialization">Specialization *</Label>
+              <Input
+                id="specialization"
+                type="text"
+                placeholder="e.g., AI/ML, Web Development"
+                required
+                value={formData.specialization}
+                onChange={(e) =>
+                  setFormData({ ...formData, specialization: e.target.value })
+                }
+              />
+            </div>
 
-                <div className="pt-4">
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full text-lg py-6"
-                  >
-                    Submit Application
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </div>
-              </form>
+            <div className="space-y-2">
+              <Label htmlFor="passoutYear">Passout Year *</Label>
+              <select
+                id="passoutYear"
+                required
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                value={formData.passoutYear}
+                onChange={(e) =>
+                  setFormData({ ...formData, passoutYear: e.target.value })
+                }
+              >
+                <option value="">Select year</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+          </div>
 
-              <div className="mt-8 p-4 bg-muted/50 rounded-lg">
-                <p className="text-sm text-muted-foreground text-center">
-                  <strong>Note:</strong> Selected interns will get a chance to
-                  work directly with our team on active projects and gain
-                  real-world experience. We'll review your application carefully
-                  and respond within 2 weeks.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          {/* Qualification and Programming Languages */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="qualification">Qualification *</Label>
+              <select
+                id="qualification"
+                required
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                value={formData.qualification}
+                onChange={(e) =>
+                  setFormData({ ...formData, qualification: e.target.value })
+                }
+              >
+                <option value="">Select qualification</option>
+                <option value="btech">B.Tech</option>
+                <option value="bca">BCA</option>
+                <option value="mca">MCA</option>
+                <option value="mba">MBA</option>
+                <option value="msc">M.Sc</option>
+                <option value="bsc">B.Sc</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="programmingLanguages">Programming Languages Known *</Label>
+              <Input
+                id="programmingLanguages"
+                type="text"
+                placeholder="e.g., Java, Python, JavaScript"
+                required
+                value={formData.programmingLanguages}
+                onChange={(e) =>
+                  setFormData({ ...formData, programmingLanguages: e.target.value })
+                }
+              />
+            </div>
+          </div>
+
+          {/* Experience Level */}
+          <div className="space-y-2">
+            <Label htmlFor="experience">Experience Level *</Label>
+            <select
+              id="experience"
+              required
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              value={formData.experience}
+              onChange={(e) =>
+                setFormData({ ...formData, experience: e.target.value })
+              }
+            >
+              <option value="">Select experience level</option>
+              <option value="fresher">Fresher</option>
+              <option value="experienced">Experienced</option>
+            </select>
+          </div>
+
+          {/* Mode of Internship and Duration */}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="modeOfInternship">Mode of Internship *</Label>
+              <select
+                id="modeOfInternship"
+                required
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                value={formData.modeOfInternship}
+                onChange={(e) =>
+                  setFormData({ ...formData, modeOfInternship: e.target.value })
+                }
+              >
+                <option value="">Select mode</option>
+                <option value="remote">Remote</option>
+                <option value="onsite">On-site</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="duration">Duration of Internship *</Label>
+              <select
+                id="duration"
+                required
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                value={formData.duration}
+                onChange={(e) =>
+                  setFormData({ ...formData, duration: e.target.value })
+                }
+              >
+                <option value="">Select duration</option>
+                <option value="1month">1 Month</option>
+                <option value="3months">3 Months</option>
+                <option value="6months">6 Months</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Preferred Domain */}
+          <div className="space-y-2">
+            <Label htmlFor="preferredDomain">Preferred Industry Domain *</Label>
+            <select
+              id="preferredDomain"
+              required
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              value={formData.preferredDomain}
+              onChange={(e) =>
+                setFormData({ ...formData, preferredDomain: e.target.value })
+              }
+            >
+              <option value="">Select an industry</option>
+              {industries.map((industry) => (
+                <option key={industry.id} value={industry.id}>
+                  {industry.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Real-time Project Experience */}
+          <div className="space-y-2">
+            <Label htmlFor="realtimeProject">Have you worked on any real-time project? *</Label>
+            <Textarea
+              id="realtimeProject"
+              placeholder="Briefly describe your project experience (if any)"
+              required
+              value={formData.realtimeProject}
+              onChange={(e) =>
+                setFormData({ ...formData, realtimeProject: e.target.value })
+              }
+              rows={4}
+              className="resize-none"
+            />
+          </div>
+
+          {/* Additional Message */}
+          <div className="space-y-2">
+            <Label htmlFor="message">Additional Message (Optional)</Label>
+            <Textarea
+              id="message"
+              placeholder="Tell us why you're interested in this internship..."
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
+              rows={4}
+              className="resize-none"
+            />
+          </div>
+
+          {/* Resume Upload */}
+          <div className="space-y-2">
+            <Label htmlFor="resume">Resume / CV *</Label>
+            <div className="flex items-center gap-4">
+              <Input
+                id="resume"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                required
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    resume: e.target.files?.[0] || null,
+                  })
+                }
+                className="cursor-pointer"
+              />
+              <Upload className="w-5 h-5 text-muted-foreground" />
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Accepted formats: PDF, DOC, DOCX (Max 5MB)
+            </p>
+          </div>
+
+          {/* Submit Button */}
+          <div className="pt-4">
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full text-lg py-6"
+            >
+              Submit Application
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </div>
+        </form>
+
+        {/* Note */}
+        <div className="mt-8 p-4 bg-muted/50 rounded-lg">
+          <p className="text-sm text-muted-foreground text-center">
+            <strong>Note:</strong> Selected interns will get a chance to
+            work directly with our team on active projects and gain
+            real-world experience. We'll review your application carefully
+            and respond within 2 weeks.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
         </div>
       </section>
 
