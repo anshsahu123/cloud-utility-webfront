@@ -44,9 +44,21 @@ import {
   Landmark,
   ShieldCheck,
   Bot,
+  Code,
+  BookOpen,
+  Award,
+  TrendingUp,
+  Target,
+  Zap,
+  Database,
+  Cloud,
+  Brain,
 } from "lucide-react";
 import heroImage from "@/assets/internship-hero.jpg";
 import teamImage from "@/assets/internship-team.jpg";
+import collaborationImage from "@/assets/internship-collaboration.jpg";
+import learningImage from "@/assets/internship-learning.jpg";
+import mentorshipNewImage from "@/assets/internship-mentorship-new.jpg";
 import hrmsImage1 from "@/assets/internship-hrms-1.jpg";
 import bankingImage1 from "@/assets/internship-banking-1.jpg";
 import insuranceImage1 from "@/assets/internship-insurance-1.jpg";
@@ -72,6 +84,7 @@ const InternshipPage = () => {
 
   const [selectedIndustry, setSelectedIndustry] = useState<string>("");
   const [formData, setFormData] = useState({
+    name: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -84,9 +97,13 @@ const InternshipPage = () => {
     programmingLanguages: "",
     experience: "fresher",
     internshipMode: "",
+    modeOfInternship: "",
     duration: "",
     projectExperience: "",
+    realtimeProject: "",
     domain: "",
+    preferredDomain: "",
+    message: "",
     resume: null as File | null,
   });
 
@@ -287,6 +304,245 @@ const InternshipPage = () => {
                 className="relative rounded-2xl shadow-2xl w-full h-auto"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cloud Utility Program Overview Section */}
+      <section className="py-20 md:py-32 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        
+        <div className="cloud-container relative z-10">
+          {/* Main Title Section */}
+          <div className="text-center mb-16 space-y-6 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 rounded-full border border-primary/30">
+              <Award className="w-5 h-5 text-primary" />
+              <span className="text-base font-bold text-primary uppercase tracking-wide">
+                Cloud Utility Industrial Live Internship Program
+              </span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-extrabold text-foreground leading-tight">
+              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                Work on Real Industry Projects
+              </span>
+              <br />
+              <span className="text-foreground">& Build Your Career!</span>
+            </h2>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground font-medium max-w-3xl mx-auto">
+              Learn. Build. Become Industry-Ready.
+            </p>
+          </div>
+
+          {/* Visual Grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-20">
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <img 
+                src={collaborationImage} 
+                alt="Team collaboration on real projects" 
+                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <p className="text-white font-semibold text-lg">Real Project Experience</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <img 
+                src={learningImage} 
+                alt="Learning industry technologies" 
+                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <p className="text-white font-semibold text-lg">Hands-On Learning</p>
+              </div>
+            </div>
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <img 
+                src={mentorshipNewImage} 
+                alt="Expert mentorship and guidance" 
+                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <p className="text-white font-semibold text-lg">Expert Mentorship</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Why Join Section */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                🔥 Why Join Cloud Utility Internship?
+              </h3>
+              <p className="text-lg text-muted-foreground">Transform your career with real-world experience</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                    <Briefcase className="w-8 h-8 text-primary" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Live Projects</h4>
+                  <p className="text-sm text-muted-foreground">Work on actual client projects with real impact</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
+                    <BookOpen className="w-8 h-8 text-secondary" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Complete SDLC</h4>
+                  <p className="text-sm text-muted-foreground">Learn full Software Development Life Cycle</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                    <Target className="w-8 h-8 text-accent" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Industry Tasks</h4>
+                  <p className="text-sm text-muted-foreground">Real-world tasks from industry experts</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                    <Users className="w-8 h-8 text-primary" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Expert Mentorship</h4>
+                  <p className="text-sm text-muted-foreground">Learn from industry professionals</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
+                    <TrendingUp className="w-8 h-8 text-secondary" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Weekly Reviews</h4>
+                  <p className="text-sm text-muted-foreground">Track progress with weekly feedback sessions</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
+                    <Award className="w-8 h-8 text-accent" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Certificate & LOR</h4>
+                  <p className="text-sm text-muted-foreground">Get internship certificate & recommendation letter</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                    <Zap className="w-8 h-8 text-primary" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Portfolio Building</h4>
+                  <p className="text-sm text-muted-foreground">Build impressive portfolio with real projects</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl">
+                <CardContent className="p-6 text-center space-y-3">
+                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
+                    <Briefcase className="w-8 h-8 text-secondary" />
+                  </div>
+                  <h4 className="font-bold text-lg text-foreground">Job Opportunity</h4>
+                  <p className="text-sm text-muted-foreground">Full-time job opportunity for top performers</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Technologies Section */}
+          <div>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                💼 Technologies You'll Learn
+              </h3>
+              <p className="text-lg text-muted-foreground">Master in-demand technologies and tools</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl bg-gradient-to-br from-primary/5 to-transparent">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center">
+                    <Cloud className="w-7 h-7 text-primary" />
+                  </div>
+                  <h4 className="font-bold text-xl text-foreground">Salesforce Development</h4>
+                  <p className="text-muted-foreground">Master Salesforce CRM, Apex, Lightning Web Components, and integrations</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl bg-gradient-to-br from-secondary/5 to-transparent">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center">
+                    <Brain className="w-7 h-7 text-secondary" />
+                  </div>
+                  <h4 className="font-bold text-xl text-foreground">AI & Machine Learning</h4>
+                  <p className="text-muted-foreground">Build intelligent applications with ML models and AI algorithms</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl bg-gradient-to-br from-accent/5 to-transparent">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-14 h-14 bg-accent/20 rounded-lg flex items-center justify-center">
+                    <Database className="w-7 h-7 text-accent" />
+                  </div>
+                  <h4 className="font-bold text-xl text-foreground">Data Handling & Analytics</h4>
+                  <p className="text-muted-foreground">Work with big data, analytics tools, and visualization platforms</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl bg-gradient-to-br from-primary/5 to-transparent">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-7 h-7 text-primary" />
+                  </div>
+                  <h4 className="font-bold text-xl text-foreground">Data Science</h4>
+                  <p className="text-muted-foreground">Analyze complex data sets and build predictive models</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl bg-gradient-to-br from-secondary/5 to-transparent">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center">
+                    <Cloud className="w-7 h-7 text-secondary" />
+                  </div>
+                  <h4 className="font-bold text-xl text-foreground">Cloud Computing</h4>
+                  <p className="text-muted-foreground">Deploy scalable applications on AWS, Azure, and GCP platforms</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 hover:border-primary/50 transition-all hover:shadow-xl bg-gradient-to-br from-accent/5 to-transparent">
+                <CardContent className="p-8 space-y-4">
+                  <div className="w-14 h-14 bg-accent/20 rounded-lg flex items-center justify-center">
+                    <Code className="w-7 h-7 text-accent" />
+                  </div>
+                  <h4 className="font-bold text-xl text-foreground">Web & App Development</h4>
+                  <p className="text-muted-foreground">Create modern web and mobile applications with latest frameworks</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center mt-16">
+            <Button 
+              size="lg"
+              onClick={() => scrollToSection('apply')}
+              className="px-12 py-7 text-lg font-bold shadow-xl hover:shadow-2xl transition-all"
+            >
+              Start Your Journey Today
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
           </div>
         </div>
       </section>
