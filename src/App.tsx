@@ -10,6 +10,8 @@ import ServicesPage from "./pages/ServicesPage";
 import InternshipPage from "./pages/InternshipPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import FAQsPage from "./pages/FAQsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/internship" element={<InternshipPage />} />
           <Route path="/live-projects" element={<CaseStudiesPage />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/faqs" element={<FAQsPage />} />
           
           {/* Catch-all Route */}
           <Route path="*" element={<NotFound />} />
