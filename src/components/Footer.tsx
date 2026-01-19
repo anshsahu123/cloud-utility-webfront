@@ -202,18 +202,24 @@ const Footer = () => {
         <div className="border-t border-cloud-700 mt-8 pt-8 text-center text-cloud-300">
           <p>&copy; {currentYear} Cloud Utility. All rights reserved.</p>
           <div className="mt-2 space-x-4">
-            <a
-              href="#"
+            <Link
+              to="/privacy-policy"
               className="text-cloud-300 hover:text-white transition-colors"
             >
               Privacy Policy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/terms-and-conditions"
               className="text-cloud-300 hover:text-white transition-colors"
             >
               Terms of Service
-            </a>
+            </Link>
+            <Link
+              to="/faqs"
+              className="text-cloud-300 hover:text-white transition-colors"
+            >
+              FAQs
+            </Link>
           </div>
         </div>
       </div>
