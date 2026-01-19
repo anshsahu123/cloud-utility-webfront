@@ -9,6 +9,7 @@ import ContactPage from "./pages/ContactPage";
 import ServicesPage from "./pages/ServicesPage";
 import InternshipPage from "./pages/InternshipPage";
 import CaseStudiesPage from "./pages/CaseStudiesPage";
+import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/services/:serviceType" element={<ServicesPage />} />
           <Route path="/internship" element={<InternshipPage />} />
           <Route path="/live-projects" element={<CaseStudiesPage />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
           
           {/* Catch-all Route */}
           <Route path="*" element={<NotFound />} />
