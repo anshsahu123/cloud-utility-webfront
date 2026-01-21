@@ -20,9 +20,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Poppins', 'sans-serif'],
-				heading: ['Montserrat', 'sans-serif'],
-				display: ['Playfair Display', 'serif'],
+				sans: ['Source Sans 3', 'sans-serif'],
+				heading: ['Merriweather', 'serif'],
+				display: ['Cormorant Garamond', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
