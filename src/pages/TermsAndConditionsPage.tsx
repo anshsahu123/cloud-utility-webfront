@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Separator } from "@/components/ui/separator";
+import { FileText } from "lucide-react";
+import termsHeroImage from "@/assets/terms-hero.jpg";
 
 const TermsAndConditionsPage = () => {
   useEffect(() => {
@@ -64,9 +66,20 @@ const TermsAndConditionsPage = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={termsHeroImage} 
+            alt="Business agreement and partnership" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/70" />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 backdrop-blur-sm mb-6">
+              <FileText className="w-8 h-8 text-primary" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Terms and Conditions
             </h1>
